@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
-		<top></top>
+		<top v-if="islogin"></top>
+		<topBack v-else></topBack>
 		<router-view/>
 		<footblock></footblock>
 	</div>
@@ -8,19 +9,30 @@
 
 <script>
 import top from '@/components/top'
+import topBack from '@/components/topBack'
 import footblock from '@/components/footer'
 
 export default {
 	name: 'App',
 	components: {
 		top,
-		footblock
+		topBack,
+		footblock,
 	},
 	data() {
 		return {
-
+			islogin: false,// 是否登陆
 		}
-	}
+	},
+	watch: {
+		$route() {
+			if (this.$route.path == '/login' || this.$route.path == '/register') {
+				this.islogin = false;
+			} else {
+				this.islogin = true;
+			}
+		}
+	},
 }
 </script>
 

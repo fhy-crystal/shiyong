@@ -3,8 +3,9 @@
 		<header class="logo_box">
 			<div class="layout_1200 clearfix">
 				<div class="logo">
-					<a href="./index.html">
-						<img src="../../assets/logo.png" alt="图片加载失败"></a>
+					<router-link to="/index">
+						<img src="../../assets/logo.png" alt="图片加载失败">
+					</router-link>
 				</div>
 				<form class="search_bar" action="" method="">
 					<input type="text" value="" name="itemName" id="search_frame" placeholder="搜一个商品，开始立即申请吧！">
