@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+const login = () => import('@/pages/login');
+const regConfirm = () => import('@/pages/regConfirm');
+const register = () => import('@/pages/register');
+const findPwd = () => import('@/pages/findPwd');
 
 const prolist = () => import('@/pages/front/prolist');
-const login = () => import('@/pages/login');
 
 Vue.use(Router)
 
@@ -22,6 +25,18 @@ export default new Router({
 			path: '/login',
 			name: 'login',
 			component: login
+		}, {
+			path: '/regConfirm',
+			name: 'regConfirm',
+			component: regConfirm
+		}, {
+			path: '/register',
+			name: 'register',
+			component: register
+		}, {
+			path: '/findPwd',
+			name: 'findPwd',
+			component: findPwd
 		}
 	]
 })

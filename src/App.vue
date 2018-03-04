@@ -26,7 +26,7 @@ export default {
 	},
 	watch: {
 		$route() {
-			if (this.$route.path == '/login' || this.$route.path == '/register') {
+			if (this.$route.path == '/login' || this.$route.path == '/regConfirm' || this.$route.path == '/register' || this.$route.path == '/findPwd') {
 				this.islogin = false;
 			} else {
 				this.islogin = true;

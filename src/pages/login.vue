@@ -14,16 +14,16 @@
 						<el-input v-model="info.user" placeholder="用户名"></el-input>
 					</el-form-item>
 					<el-form-item prop="pwd">
-						<el-input v-model="info.pwd" placeholder="6-16位字符，包含英文、数字"></el-input>
+						<el-input type="password" v-model="info.pwd" placeholder="6位以上字符，包含英文、数字"></el-input>
 					</el-form-item>
 					<li class="forgot_pwd clearfix">
-						<a class="fr" href="">忘记密码？</a>
+						<router-link class="fr" to="/findPwd">忘记密码？</router-link>
 					</li>
 					<el-form-item>
 						<el-button class="login_btn" type="primary" @click="onSubmit('loginForm')">立即登录</el-button>
 					</el-form-item>
 					<li class="register">
-						<a class="fr" href="./register/index.html">快速注册</a>
+						<router-link to="/regConfirm" class="fr">快速注册</router-link>
 					</li>
 				</el-form>
 			</div>
@@ -33,6 +33,22 @@
 <script>
 	export default {
 		data() {
+			var userCheck = (rule, value, callback) => {
+				if (value === '') {
+					callback(new Error('用户名不能为空'));
+				} else {
+					callback();
+				}
+			};
+			var pwdCheck = (rule, value, callback) => {
+				if (value === '') {
+					callback(new Error('密码不能为空'));
+				} else if (value.length < 6) {
+					callback(new Error('密码长度不能小于6位'));
+				} else {
+					callback();
+				}
+			}
 			return {
 				errorMsg: '出错信息',
 				info: {
@@ -41,12 +57,10 @@
 				},
 				rules: {
 					user: [{
-						require: true, message: '用户名不能为空', trigger: 'blur'
+						validator: userCheck, trigger: 'blur'
 					}],
 					pwd: [{
-						require: true, message: '密码不能为空', trigger: 'blur'
-					}, {
-						min: 6, max: 12, message: '密码长度为6-12位', trigger: 'blur'
+						validator: pwdCheck, trigger: 'blur'
 					}]
 				}
 			}
@@ -67,7 +81,7 @@
 	/* 内容 */
 	.content {
 		padding: 20px 0 50px 0;
-		margin-top: 100px;
+		margin-top: 60px;
 		font-size: 14px;
 		background-color: #fff;
 
