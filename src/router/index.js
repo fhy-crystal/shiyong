@@ -8,6 +8,11 @@ const findPwd = () => import('@/pages/findPwd');
 
 const prolist = () => import('@/pages/front/prolist');
 
+const backIndex = () => import('@/pages/end/index');
+
+// 活动管理
+const activity = () => import('@/pages/end/activity/index');
+
 Vue.use(Router)
 
 export default new Router({
@@ -37,6 +42,15 @@ export default new Router({
 			path: '/findPwd',
 			name: 'findPwd',
 			component: findPwd
+		}, {
+			path: '/backManage',
+			name: 'backManage',
+			component: backIndex,
+			children: [{
+				path: '/backManage/activity',
+				name: 'activity',
+				component: activity
+			}]
 		}
 	]
 })

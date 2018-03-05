@@ -17,7 +17,7 @@ export default {
 	components: {
 		top,
 		topBack,
-		footblock,
+		footblock
 	},
 	data() {
 		return {

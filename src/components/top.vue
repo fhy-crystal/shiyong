@@ -4,8 +4,8 @@
 			<div class="fl">
 				<router-link to="/login" class="font_red">登录</router-link>
 				<router-link to="/regConfirm" class="font_red">免费注册</router-link>
-				<router-link to="/app" v-show="!user">商家中心</router-link>
-				<router-link to="/app" v-show="user">用户中心</router-link>
+				<router-link to="/backManage/activity" v-show="!user">商家中心</router-link>
+				<router-link to="/backManage/activity" v-show="user">用户中心</router-link>
 			</div>
 		</div>
 	</nav>
