@@ -1,0 +1,353 @@
+input{outline: none;}
+.user_titlt_font{color: #999999}
+.textcenter{text-align: center;}
+.displayblock{display: block;}
+.fontsize24{font-size: 24px;}
+.fontsize18{font-size: 18px;}
+.marginleft40{margin-left: 40px;}
+.marginleft22{margin-left: 22px;}
+.marginbottom60{margin-bottom: 60px;}
+.lineHeight30{line-height: 30px;}
+.lineHeight80{line-height: 80px;}
+/*用户充值页面的相关样式设置*/
+.userRecharge{position: relative;line-height: 48px;border-bottom: 1px solid #E3E3E3;padding-left: 30px;}
+.userRecharge_style{width: 1px;height: 15px;background: #E3E3E3;margin: 16px 30px 0;}
+.userRecharge span{width: 100px;height: 2px;background: #FF366F;position: absolute;bottom: 0;left: 24px;}
+.userRecharge_con_left{width: 525px;height: 592px;border-right:1px solid #E3E3E3;padding: 100px 0 0 154px;}
+.userRecharge_con_left input,.userRecharge_con_left em{vertical-align: middle;color: #666666;}
+.userRecharge_con_left em{margin:0 24px 0 4px;}
+.userRecharge_con_left li{line-height: 34px;}
+.userRecharge_con_left .prompt_time{line-height: 40px;height: 40px;vertical-align: middle}
+.userRecharge_con_left .prompt_time i{display: inline-block;line-height: 40px;height: 40px;vertical-align: middle}
+.userRecharge_con_left li span{width: 100px;text-align: right;vertical-align: middle;color: #999999;}
+.userRecharge_con_right{width: 240px;}
+.userRecharge_content .userRecharge_paymoney{width: 220px;height: 42px;line-height: 42px;border-radius: 3px;color: #ffffff;background: #ff366f;margin: 50px 0 0 100px;}
+.userRecharge_content .userRecharge_vipmoney{color: #FF366F;margin-right: 4px;}
+.userRecharge_left_input input{width: 210px;padding-left: 10px; height: 42px;line-height: 42px;border: 1px solid #E3E3E3;margin: 10px 10px 10px 0;}
+.userRecharge_con_left li a{display: inline-block;width:220px;height:42px;line-height:42px;text-align:center;color:white;background: #FF366F;border-radius: 3px;}
+.userRecharge_con_left li a{margin:50px 0 0 100px;}
+.userRecharge_con_right{margin: 0 30px;}
+.userRecharge_con_right h3{line-height: 44px;color: #666666;font-weight: normal;margin-top: 34px;border-bottom:1px solid #E3E3E3;padding-left:34px;}
+.userRecharge_con_right ul li{line-height: 24px;color: #999999;}
+.userRecharge_con_right_top{margin-top: 28px;}
+.userRecharge_con_right_topa{background: url(../img/user/userRecharge_a.png) no-repeat;background-position-y: center;}
+.userRecharge_con_right_top li span{display: inline-block;width: 14px;height:24px;line-height: 24px;vertical-align: middle;background: url(../img/business/college_home_b.png) no-repeat;background-position-y: center;}
+.userRecharge_con_right_bottom li{margin-top: 20px;}
+.userRecharge_con_right_bottoma{background: url(../img/business/shop_bind_b.png) no-repeat;background-position-y:center;}
+.userRecharge_con_right_bottoma a{font-size: 14px;color:#FF366F ;}
+.userRecharge_con_left_cue{padding-left: 120px;background-position-y: center;height: 30px;line-height: 30px;background-position-x: 100px;color: #FF93b2;}
+.user_recharge_gold{font-size: 16px;color: #666666;}
+.user_recharge_VIP{font-size: 16px;color: #FF366F;}
+/*个人-支付宝充值页面*/
+.userAlipay{padding: 10px 30px 0;}
+.userAlipay_notice{background: #FFFBE9;height: 120px;padding-left: 30px;}
+.userAlipay_notice span{font-size: 16px;color: #333333;line-height: 40px;padding-left: 20px;background: url(..../img/business/shop_bind_c.png) no-repeat;background-position-y: center;}
+.userAlipay_notice li{line-height: 30px;color: #666666;}
+.userAlipay_account{font-weight: normal;color: #666666;font-size: 14px;line-height: 26px;margin-top: 38px;}
+.userAlipay_account_con{height: 150px;background: #e5f5ff;}
+.userAlipay_account_cona{margin: 45px 50px 0 160px;}
+.userAlipay_account_conb{line-height: 150px;}
+.userAlipay_account_conc{margin-top: 42px;}
+.userAlipay_account_conb span{color: #666666;line-height: 30px;}
+.userAlipay_case{font-size: 14px;color: #666666;font-weight: normal;line-height: 54px;margin-top: 24px;}
+.userAlipay_example_a{width:635px;height:388px;}
+.userAlipay_example_a img{width: 635px;height: 388px;}
+.userAlipay .userAlipay_dataZS{width: 920px;border-top: 1px solid #e3e3e3;border-left: 1px solid #e3e3e3;margin-top:20px;}
+.userAlipay .userAlipay_dataZS ul{width: 918px;height: 40px;line-height: 40px;}
+.userAlipay .userAlipay_dataZS .userAlipay_data_font{color: #ff0000;}
+.userAlipay .userAlipay_dataZS .userAlipay_data_font span{font-weight: bold;}
+.userAlipay .userAlipay_dataZS ul li{width:438px;padding-right: 20px;border-right: 1px solid #e3e3e3;border-bottom: 1px solid #e3e3e3;line-height: 40px;height: 40px;text-align: right}
+.userAlipay .userAlipay_dataZS .userAlipay_datatitle{background: #F4F5FA;}
+/*个人-资金明细页面的样式设置*/
+.fundBack_right{width:920px;background:white;padding: 20px 30px 0;}
+.fundBack_title{height:60px;line-height:60px;background:#EFEFEF;padding-left:40px;margin-bottom: 20px;color: #666666;}
+.fundBack_title span{color:#FF366F;margin-left:10px;}
+.fundBack_title_top{border-top: 1px solid #E3E3E3;line-height: 40px;background: #F3F3F3;color: #666666;}
+.fundBack_title_top li,.fundBack_title_con li{text-align: center;}
+.fundBack_title_topa{width: 190px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.fundBack_title_top .fundBack_title_topb,.fundBack_title_con .fundBack_title_topb{width: 300px;text-align: center;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.fundBack_title_topc{width: 160px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.fundBack_title_topd{width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.fundBack_title_tope{width: 170px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.fundBack_title_con{line-height: 58px;border-bottom: 1px solid #F3F3F3;color: #999999;}
+.userFund_money{background: #EFEFEF;}
+.userFund_money li{float: left;line-height: 60px;width: 183px;text-align: center;}
+.userFund_money li span{color: #FF366F;margin-left: 10px;}
+.userFund_money .funManage_wire{width:1px;height:30px;background: #E6E6E6;margin-top: 15px;}
+/*个人-金币明细页面的样式相关设置*/
+.userGold_money{line-height: 60px;background: #EFEFEF;}
+.userGold_money li{float: left;width: 229px;text-align: center;}
+.userGold_money li span{color: #FF366F;margin: 0 5px 0 15px;}
+.userGold_money .userGold_wire{width: 1px;height: 30px;background: #E6E6E6;margin-top: 15px;}
+/*个人-积分明细页面的相关样式设置*/
+/*无*/
+/*个人-提现绑定页面的相关样式设置*/
+.userAccount_success{width: 320px;margin: 240px auto;}
+.userAccount_success span em{display: block;}
+.userAccount_success_cue{font-size:20px;color:#666666;line-height: 34px;}
+.userAccount_success .userAccount_success_time em{color: #ff366f;display: inline-block;}
+.userAccount_success .userAccount_success_type{display: inline-block;}
+.userAccount_success_num{color: #999999;}
+.userAccount_success_num i{color: #FF366F;}
+/*用户帮助中心*/
+.help_head_left,.help_head_right{line-height: 100px;}
+.help_head_left h1 img{margin-top: 27px;}
+.help_head_left span{display: inline-block;color: #666666;font-size: 28px;margin-left: 10px;}
+.help_head_right ul li a{display: inline-block;width: 100px;height: 34px;line-height: 34px;text-align: center;color: #666666;border-radius: 3px;}
+.help_head_right ul li{width: 130px;text-align: right;}
+.help_head_right .help_select a{background: #FF366F;color: white;}
+.helpSide{width: 220px;background: white;}
+.help_nav_title{line-height: 58px;height: 58px;font-size: 16px;color: #333333;}
+.help_nav_title_user{width: 109px;text-align: center;border-right: 1px solid #EFEFEF;border-bottom: 1px solid white;}
+.help_nav_title_seller{width: 110px;text-align: center;border-bottom: 1px solid #EFEFEF;background: #FAFAFA;}
+.helpSide h3{ height: 46px; line-height:46px; border-bottom:1px solid #eaeaea; cursor:pointer; color: #666; font-size: 14px; font-weight: normal; text-align: center;}
+.helpSide h3 img{ vertical-align: middle; margin-right: 15px;}
+.helpSide h3 em{ display: inline-block; width: 10px; height: 10px; background:url(..../img/business/shop_h.png) no-repeat; cursor:pointer; vertical-align: middle; margin-left: 15px;}
+.helpSide h3 span{width: 150px;text-align: left;}
+.helpSide h3.on{ border: none;}
+.helpSide h3.on em{ background:url(..../img/business/shop_g.png) no-repeat; }
+.helpSide ul{ border-bottom:1px solid #eaeaea;}
+.helpSide ul li a{ display: block; width: 197px; color: #999; line-height: 38px; padding-left: 23px;}
+.helpSide ul li a i{font-weight: bold;font-style: italic;} 
+.helpSide ul li a:hover{ background: #fff1f5; color: #ff4777;}
+.userHelp{width: 960px;}
+/*用户代言人专题页的相关样式设置*/
+.page_photo{width: 100%;min-width: 1200px;height: 584px;background: url("../img/home/spoken-pageGH.png") no-repeat;background-position: center;}
+.invitation_mode{width: 100%;min-width: 1200px; background: #f3f1e4;padding-bottom: 108px;}
+.invitation_mode_top{width: 1200px;margin: auto;height: 100px;position: relative}
+.invitation_mode_top h2{width: 1200px;height: 100px;color: #a32f14;font-size: 40px;text-align: center;line-height: 100px;}
+.invitation_mode_top span a{display: inline-block;width: 260px;height: 56px;}
+.invitation_mode_top span{display: inline-block;width: 260px;height: 56px;background: url("../img/home/spoken_page_a.png") no-repeat;position: absolute;right:0;bottom:0;}
+.spoken_mode{width: 1120px;background: #ffffff;margin: 10px auto 0;border-top-left-radius: 10px;border-top-right-radius: 10px;padding: 36px 40px;}
+.spoken_mode_true{width: 1200px;margin: 10px auto 0;height: 234px;position: relative;background: #ffffff;}
+.spoken_mode_true span{width: 1200px;height: 234px;position: absolute;background: url("../img/home/spoken_no_bag.png") no-repeat;}
+.spoken_mode_true a{position: absolute;top: 50px;left: 450px;}
+.spoken_mode_true p{text-align: center;position: relative;top: 160px;font-size: 18px;color: #333333}
+.spoken_mode_true p em{color: #a32f14}
+.spoken_mode_a{font-size: 24px;color: #333333;margin-bottom: 24px;}
+.spoken_mode_b input{width: 956px;height: 62px;line-height: 62px;border-radius: 5px;border: 1px solid #b6b6b6;color: #333333;font-size: 14px;vertical-align: top;}
+.spoken_mode_b span{width: 100px;height: 40px;background: #a32f14;line-height: 40px;color: #ffffff;text-align: center;font-size: 14px;border-radius: 5px;vertical-align: top;cursor: pointer;margin-right: 30px;}
+.spoken_mode_b .myfr{background: #3491ff;}
+.spoken_mode_c{color: #999999;line-height: 34px;}
+.spoken_mode_d .spoken_mode_baga{background: url("../img/user/weixinlogo.png") no-repeat;background-position-x: center;}
+.spoken_mode_d .spoken_mode_bagb{background: url("../img/user/weibologo.png") no-repeat;background-position-x: center;}
+.spoken_mode_d .spoken_mode_bagc{background: url("../img/user/weibologob.png") no-repeat;background-position-x: center;}
+.spoken_mode_d .spoken_mode_bagd{background: url("../img/user/QQkongjian.png") no-repeat;background-position-x: center;}
+.spoken_mode_d a{display: inline-block;width: 24px;height: 24px;margin-right: 10px;padding-top: 36px;color: #666;}
+.spoken_mode_e{font-size: 24px;color: #333333;margin-right: 50px;}
+.spoken_mode_f img{width: 130px;height: 130px;}
+.spoken_mode_f dt{width: 152px;height: 142px;text-align: center;border: 1px solid #9F9F9f;padding-top: 10px;margin-top: 50px;}
+.spoken_mode_f dd{font-size: 18px;text-align: center;line-height: 30px;}
+.spoken_mode_g{font-size: 14px;color: #999999;line-height: 24px;margin: 80px 0 0 100px;}
+.spoken_mode_h{width: 232px;height: 200px;background: url("../img/home/spoken-page-f.png") no-repeat;}
+.spoken_mode_one{border-bottom: 1px dashed #000000;padding-bottom: 36px;margin-bottom: 30px;}
+.spoken_wire_top,.spoken_wire_bottom{display: inline-block;width: 1200px;height: 8px;margin: auto;}
+.spoken_wire_bottom{background: url("../img/home/spoken-page-h.png") no-repeat;}
+.spoken_wire_top{background: url("../img/home/spoken-page-g.png") no-repeat;}
+.spoken_wire_type{width: 1200px;margin: auto;display: none;}
+.reward_rules{width: 1200px;margin: auto;background: #ffffff;padding-top: 50px;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;}
+.reward_rules h2{width: 274px;height: 550px;background: url("../img/home/spoken-page-i.png") no-repeat;padding-left: 40px;}
+.reward_rules dl{margin-bottom: 44px;}
+.reward_rules dl dt{font-size: 18px;color: #333333;vertical-align: middle;line-height: 30px;}
+.reward_rules dl dt span{width: 16px;line-height: 16px;height: 16px;margin: -3px 10px 0 0;background: #a32f14;border-radius: 8px;color: #ffffff;text-align: center;font-size: 14px;vertical-align: middle;}
+.reward_rules dl dd{color: #666666;font-size: 14px;line-height: 24px;padding-left: 26px;}
+.reward_rules dl dd em{color: #a32f14;}
+.reward_rules dl dd i{color: #0075ec;}
+.award_description h2{line-height: 120px;width: 1200px;margin: auto;padding-top: 20px;font-size: 40px;text-align: center;color: #a32f14;}
+.award_description .award_content{width: 1200px;background: #ffffff;margin: auto;border-radius: 10px;padding: 40px 0;}
+.award_description .award_content p{background: url("../img/home/imghomeflow_chartB.png?v=1") no-repeat;height: 450px;width: 1200px;background-position: center;margin-top: 30px;}
+.award_description .award_content li{color: #333333;line-height: 32px;}
+.award_description .spoken_details span{line-height: 32px;}
+.data_display{width: 1224px;margin: 30px auto 0;}
+.data_display .data_display_personal{width: 426px;}
+.data_display .data_display_whole{width: 790px;}
+.data_display .spoken_exhibition_cona{width: 400px;padding-bottom: 40px;height:396px;}
+.data_display .spoken_exhibition_conb{width: 766px;padding-bottom: 62px;height: 374px;}
+.data_display .spoken_exhibition_cona,.data_display .spoken_exhibition_conb{background: #ffffff;margin: auto;}
+.data_display .spoken_exhibition_cona a,.spoken_exhibition_true a {display: block;color: #ffffff;width: 180px;line-height: 40px;height: 40px;text-align: center;background: #a32f14;border-radius: 5px;margin: 36px auto 0;}
+.data_display .data_display_personal li,.data_display .data_display_whole li{float: left;text-align: center;}
+.data_display .data_display_personal li{width: 120px;}
+.data_display .data_display_whole li{width: 242px;}
+.data_display .spoken_exhibition_bagb{display: block;width: 426px;height: 26px;background: url("../img/home/spoken_left_bottom.png") no-repeat}
+.data_display .spoken_exhibition_bagd{display: block;width: 790px;height: 26px;background: url("../img/home/spoken_right_bottom.png") no-repeat}
+.data_display .spoken_exhibition_baga{display: block;background: url("../img/home/spoken_left_top.png") no-repeat;width: 412px;height: 22px;margin: auto;}
+.data_display .spoken_exhibition_fonta{display: block;margin: auto;width: 400px;line-height: 50px;height: 50px;text-align: center;font-weight: bold;background: #ffffff;font-size: 20px;}
+.data_display .spoken_exhibition_fontb{display: block;margin: auto;width: 766px;line-height: 50px;height: 50px;text-align: center;font-size: 20px;font-weight: bold;background: #ffffff;}
+.data_display .spoken_exhibition_titlea,.data_display .spoken_exhibition_titleb{height: 42px;line-height: 42px;margin: auto;background-color: #F3F3F3;border-top: 1px solid #e3e3e3;color: #666666;}
+.data_display .spoken_exhibition_titlea,.data_display .spoken_exhibition_centera{width: 360px;}
+.data_display .spoken_exhibition_titleb,.data_display .spoken_exhibition_centerb{width: 726px;}
+.data_display .spoken_exhibition_centera,.spoken_exhibition_centerb{background: #ffffff;border-bottom: 1px solid #e3e3e3;line-height: 54px;height: 54px;margin: auto;color: #999999;}
+.data_display .spoken_exhibition_bagc{display: block;width: 776px;height:22px;background: url("../img/home/spoken_right_top.png") no-repeat;margin: auto;}
+.spoken_exhibition_false{height: 484px;}
+.spoken_exhibition_true{background: #ffffff;width: 400px;margin: auto;height: 484px;color: #666666;}
+.spoken_exhibition_true p{text-align: center;padding-top: 180px;font-size: 18px;}
+/*商家代言人专题页*/
+.shop_special_photo{width: 100%;min-width: 1200px;height: 552px;background: url("../img/business/shop_special.png") no-repeat;background-position: center;}
+.shop_special_whole{background: #f1f1f3;padding-bottom: 230px;}
+.shop_special_content .shop_special_contop h2{color: #3491ff;}
+.shop_special_content .shop_special_contop span{background: url("../img/business/shop_special_link.png") no-repeat;}
+.spoken_mode .shop_speciala{background: url("../img/business/shop_special_a.png") no-repeat;background-position: center;width:310px;height: 230px; }
+.spoken_mode .spoken_mode_g{margin: 80px 0 0 60px;}
+.spoken_mode .spoken_mode_e{margin-right: 30px;}
+.reward_rules_bag{position: relative}
+.reward_rules .shop_rules_title{width: auto;height: auto;background: none;margin-bottom: 20px;}
+.reward_rules .shop_rules_con{padding-bottom: 30px;}
+.reward_rules .shop_rules_con li{line-height: 50px;vertical-align: middle;padding-left: 40px;}
+.reward_rules .shop_rules_con li span{margin-right: 16px;width: 16px;height: 16px;border-radius: 8px;vertical-align: middle;line-height: 16px;text-align: center;color: #ffffff;background: #3491ff}
+.reward_rules .shop_rules_con li em{color: #a32f14}
+.reward_rules_bag .shop_post_bag{background: url("../img/business/shop_spical_b.png") no-repeat;width: 448px;height: 234px;position: absolute;right: 30px;bottom: 0;}
+.spoken_mode_true p .shop_num_money{color:red;}
+/*公共的支付页面*/
+.money_pay_page .money_pay_title{display: block;line-height: 38px;width: 920px;margin: 10px auto 0;border-bottom: 1px solid #e3e3e3;}
+.money_pay_page .money_pay_explain{width: 920px;margin: auto;padding-left: 0;}
+.money_pay_page .money_pay_explain li{float: left;text-align: center;line-height: 50px;}
+.money_pay_page .money_pay_explaina,.money_pay_page .money_pay_explainc{width: 230px;}
+.money_pay_page .money_pay_explainb{width: 460px;}
+.money_pay_page .money_pay_content{width: 920px;margin: auto;border: 1px solid #e3e3e3;}
+.money_pay_content .money_pay_con{width: 920px;padding-left: 0;border-bottom: 1px solid #e3e3e3;vertical-align: middle;display: table;}
+.money_pay_con .money_pay_cona,.money_pay_con .money_pay_conc{width:230px;text-align: center;padding: 10px 0;vertical-align: middle;display: table-cell;}
+.money_pay_con .money_pay_conb{width: 460px;padding: 10px 0  10px 0;}
+.money_pay_con .money_pay_conb p{line-height: 24px;text-align: center}
+.money_pay_con .money_pay_conb p span{width: auto;}
+.money_pay_content .money_pay_whole{line-height: 60px;text-align: right;padding-right: 40px;}
+.money_pay_content .money_pay_whole span{color: #ff0000;}
+.money_pay_content .money_pay_whole b{line-height: 60px;display: inline-block}
+.money_pay_page .money_pay_payment .money_pay_paymentcon{padding-left:0;}
+.money_pay_page .money_pay_payment .money_pay_paymentcon li{display: inline-block;}
+.money_pay_page .money_pay_payment{width: 920px;margin: 20px auto 0;background: #fafafa;border: 1px solid #e3e3e3;}
+.money_pay_page .money_pay_payment .money_pay_paymentcona input,.money_pay_page .money_pay_payment .money_pay_paymentcona span{width: auto;height: auto;}
+.money_pay_page .money_pay_payment .money_pay_paymentcona{width: 440px;padding-left: 30px;height: 98px;}
+.money_pay_payment .money_pay_paymentcona .money_pay_paymentman{margin-top: 24px;}
+.money_pay_paymentcona .money_pay_paymentman input{margin-right: 10px;}
+.money_pay_page .money_pay_payment .money_pay_paymentcona p{vertical-align: middle;height: auto;margin-left: 24px;}
+.money_pay_page .money_pay_payment .money_pay_paymentcona p b{vertical-align: middle;line-height: 20px;color: #ff0000;height: auto;margin:0 5px 0 10px;}
+.money_pay_page .money_pay_payment .money_pay_paymentcona a{width: auto;background: #fafafa;color: #ff0000;margin-left: 20px;height: auto;}
+.money_pay_page .money_pay_payment .money_pay_paymentconc a{width: 114px;height: 40px;line-height: 40px;margin: 0 26px 0 0;}
+.money_pay_page .money_pay_payment .money_pay_paymentconb input{width: 170px;padding-left: 10px;}
+.money_pay_page .money_pay_payment .money_pay_paymentconb .pass_error{color: #ff0000;}
+.money_pay_page .money_pay_payment .money_pay_paymentconb,.money_pay_page .money_pay_payment .money_pay_paymentconc{padding-top: 28px;height: 70px;}
+.transaction_number{height: 85px;width: 100%;background: #f4f5fa;margin-top: 40px; padding-top: 15px}
+#transaction_num,#transaction_sum{height: 27px;width: 225px;background: #FFFFFF;border: 1px solid #cccccc;}
+.submit_sure{height: 22px;width: 78px; border: 1px solid #CCCCCC!important;color: #777777;font-size: 14px; cursor: pointer;}
+/*支付成功的页面*/
+.pay_success_con{width: 920px;background: #ffffff;padding: 20px 30px 330px}
+.pay_success_con .pay_suc_contitle{line-height:50px;background: #ffe8ee;color: #ff366f;padding-left: 30px;}
+.pay_success_con .pay_suc_contitle span{display: inline-block;width: 20px;height: 20px;}
+.pay_success_con ul{background: #fff9fb;color: #666666;padding: 24px 0 24px 30px;}
+.pay_success_con ul li{line-height: 28px;}
+.pay_success_con ul li em{color: #ff366f;}
+.pay_success_con .pay_suc_contrue{font-size: 18px;color: #666666;line-height: 30px;text-align: center;padding-top: 40px;margin-top: 100px;background: url("../img/home/pay_success_b.png") no-repeat;background-position-x: center;background-position-y: 0;}
+.pay_success_con .pay_suc_confont{text-align: center;color: #999999;display: block;line-height: 40px;}
+.pay_success_con .pay_suc_takecare{width: 860px;margin: 180px auto 0;}
+.pay_success_con .pay_suc_takecare h2{height: 40px;line-height: 40px;padding-left: 50px;font-size: 16px;color: #666;font-weight: normal;margin-bottom: 20px;background: url("../img/base/icon_tip.png") no-repeat 30px center;background-color: #fde8ed;}
+.pay_success_con .pay_suc_takecare p{color: #999;line-height: 26px;padding-left: 30px;}
+/*什么是代言人页面*/
+.spoke_explain_content{width: 100%;min-width: 1200px;background: #EFEFEF;padding:20px 0 30px;}
+.spoken_interlocution{width: 1080px;padding: 30px 60px 128px;background: #ffffff;margin: auto;}
+.spoken_interlocution h3{line-height: 76px;height: 76px;vertical-align: middle;cursor: pointer;border-bottom: 1px dashed #e9e9e9;background: url("../img/base/spoken_iconC.png") no-repeat;background-position: 1030px center;}
+.spoken_interlocution .on{border-bottom: none;}
+.spoken_interlocution div{line-height: 34px;overflow: hidden;}
+.spoken_interlocution div span{display: inline-block;width: 50px;height: 76px;background: url("../img/base/spoken_iconB.png") no-repeat;background-position: 20px 9px;float: left;}
+.spoken_interlocution div p,.spoken_interlocution div ul{display: inline-block;width: 1030px;float: left;color: #999;}
+.spoken_interlocution h3 span{display: inline-block;height: 76px;width:50px;background: url("../img/base/spoken_iconA.png") no-repeat;background-position: 20px 29px;}
+.spoken_interlocution .div_border{border-bottom: 1px dashed #e9e9e9;padding-bottom: 20px;}
+/*用户必中劵*/
+.lquser_coupon{width: 100%;background:#efefef;padding: 20px 0 42px;}
+.lquser_coupon .bannerphoto{width: 1200px;margin: auto;height: 108px;overflow: hidden;}
+.lquser_coupon .bannerphoto img{width: 1200px;height: 108px;}
+.bannerfont {width: 1200px;height: 40px;margin: auto;overflow: hidden;background:#FFFBEA;}
+.bannerfont span{display: inline-block;box-shadow: 2px 0 0 #E5E1D2;font-size: 14px;color: #fb8b83; width: 80px;line-height: 24px;height: 24px;padding-left:54px;margin-top: 8px;background: url("../img/user/lquser_coupon_notice.png") no-repeat 20px center;}
+.bannerfont .box{display: inline-block;width: 1060px;line-height: 40px;}
+.bannerfont a{color: #333;font-size: 14px;}
+.lquser_coupon .content{width: 1200px;margin: 20px auto 0;}
+.lquser_coupon .content .con_right{width: 980px;background: #fff;min-height: 1000px;padding-bottom: 32px;}
+.lquser_coupon .content .con_right h4{padding-left: 30px;line-height: 85px;height: 85px;font-size: 20px;color: #333;font-weight: normal;border-bottom: 1px solid #efefef;}
+.lquser_coupon .con_right .titletab{height: 28px;padding-top: 20px;border-bottom: 1px solid #efefef;color: #666;}
+.lquser_coupon .con_right p span{padding: 0 18px;font-size: 16px;cursor: pointer;color: #666;}
+.lquser_coupon .con_right p span i{color: #ff4777;vertical-align: top;}
+.lquser_coupon .con_right p .active{color: #ff4777;}
+.lquser_coupon .con_right p a{font-size: 14px;color: #999;display: inline-block;padding-left: 18px;}
+.lquser_coupon .con_right .course{background: url("../img/user/lqset_coupon1.png") no-repeat 0 center;}
+.lquser_coupon .con_right .rule{background: url("../img/user/lqset_coupon2.png") no-repeat 0 center;margin:0 30px 0 26px;}
+.lquser_coupon .con_right .coupon_list{width: 920px;margin: 30px auto 0;overflow: hidden;}
+.lquser_coupon .con_right .coupon_list ul{width: 950px;}
+.lquser_coupon .coupon_list li{width: 216px;height: 330px;margin:0 20px 40px 0;float: left;}
+.lquser_coupon .coupon_list li i{display: block;text-align: center;font-size: 40px;color: #fff;font-weight: bold;height: 34px;line-height: 34px;margin: 30px 0 14px 0;}
+.lquser_coupon .coupon_list li h6{width: 58px;height: 18px;line-height: 18px;text-align: center;border: 1px solid #fff;border-radius: 8px;margin: auto;color: #fff;font-size: 14px;}
+.lquser_coupon .coupon_list li em{color: #666;font-size: 14px;padding-left: 18px;display: inline-block;margin:30px 0 8px 0;}
+.lquser_coupon .coupon_list li p{font-size: 14px;color: #999;padding: 0 18px;line-height: 22px;}
+.lquser_coupon .coupon_list li a{display:block;width: 113px;height: 32px;color: #ff4621;border: 1px solid #ff4621;border-radius: 4px;line-height: 32px;margin: 30px auto 0;text-align: center;}
+.lquser_coupon .coupon_list li span{font-weight: bold;font-size: 14px;display: block;text-align: center;margin-top: 22px;color: #ffcbc1;}
+/*未解锁*/
+.lquser_coupon .coupon_list .unlocked{background: url("../img/user/lqset_coupon_unlocked.png") no-repeat center;}
+/*可使用*/
+.lquser_coupon .coupon_list .locked{background: url("../img/user/lqset_coupon_locked.png") no-repeat center;}
+/*即将过期*/
+.lquser_coupon .coupon_list .overdue{background: url("../img/user/lqset_coupon_overdue.png") no-repeat center;}
+/*已使用*/
+.lquser_coupon .coupon_list .bestow{background: url("../img/user/lqset_coupon_bestow.png") no-repeat center;}
+/*已过期*/
+.lquser_coupon .coupon_list .expired{background: url("../img/user/lqset_coupon_expired.png") no-repeat center;}
+.lquser_coupon dl{margin-left: 30px;}
+.lquser_coupon dl dt{font-size: 16px;color: #666;}
+.lquser_coupon dl dd{font-size: 14px;color: #999;line-height: 28px;margin: 14px 0 36px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

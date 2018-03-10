@@ -101,6 +101,23 @@
 			submit(formName) {
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
+                        API.register(this.info).then((data) => {
+                            if (data.succ) {
+                                console.log(1);
+                            } else {
+                                this.$message({
+                                    showClose: true,
+                                    message: data.msg,
+                                    type: 'error'
+                                })
+                            }
+                        }, (e) => {
+                            this.$message({
+                                showClose: true,
+                                message: e,
+                                type: 'error'
+                            })
+                        })
 						
 					}
 				})

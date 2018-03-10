@@ -10,11 +10,11 @@
 			<div class="form_box">
 				<div class="error_message">{{errorMsg}}</div>
 				<el-form :model="info" :rules="rules" ref="loginForm" class="form">
-					<el-form-item prop="user">
-						<el-input v-model="info.user" placeholder="用户名"></el-input>
+					<el-form-item prop="mobile">
+						<el-input v-model="info.mobile" placeholder="用户名"></el-input>
 					</el-form-item>
-					<el-form-item prop="pwd">
-						<el-input type="password" v-model="info.pwd" placeholder="6位以上字符，包含英文、数字"></el-input>
+					<el-form-item prop="password">
+						<el-input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字"></el-input>
 					</el-form-item>
 					<li class="forgot_pwd clearfix">
 						<router-link class="fr" to="/findPwd">忘记密码？</router-link>
@@ -31,6 +31,7 @@
 	</article>
 </template>
 <script>
+	import API from '../utils/api'
 	export default {
 		data() {
 			var userCheck = (rule, value, callback) => {
@@ -43,7 +44,7 @@
 			var pwdCheck = (rule, value, callback) => {
 				if (value === '') {
 					callback(new Error('密码不能为空'));
-				} else if (value.length < 6) {
+				} else if (value && value.length < 6) {
 					callback(new Error('密码长度不能小于6位'));
 				} else {
 					callback();
@@ -52,14 +53,14 @@
 			return {
 				errorMsg: '出错信息',
 				info: {
-					user: '',
-					pwd: ''
+					mobile: '',
+					password: ''
 				},
 				rules: {
-					user: [{
+					mobile: [{
 						validator: userCheck, trigger: 'blur'
 					}],
-					pwd: [{
+					password: [{
 						validator: pwdCheck, trigger: 'blur'
 					}]
 				}
@@ -69,7 +70,23 @@
 			onSubmit(formName) {
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
-						
+						API.login(this.info).then((data) => {
+							if (data.succ) {
+								console.log(1);
+							} else {
+								this.$message({
+									showClose: true,
+									message: data.msg,
+									type: 'error'
+								})
+							}
+						}, (e) => {
+                            this.$message({
+                                showClose: true,
+                                message: e,
+                                type: 'error'
+                            })
+						})
 					}
 				})
 			}
