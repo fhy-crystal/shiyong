@@ -6,6 +6,11 @@
 			<el-table-column prop="store_account" label="旺旺名称"></el-table-column>
 			<el-table-column prop="verify_status" label="店铺状态"></el-table-column>
 			<el-table-column prop="created_at" label="绑定时间"></el-table-column>
+			<el-table-column label="操作">
+				<template slot-scope="scope">
+					<el-button type="danger" size="small" @click="delData(scope.row.id)">删除</el-button>
+				</template>
+			</el-table-column>
 		</el-table>
 	</div>
 </template>
@@ -39,6 +44,42 @@
                     created_at: '2018-5-29'
                 }]
 				this.tableData = list;
+				// API.storelist().then((data) => {
+				// 	if (data.succ) {
+				// 		this.tableData = data.data
+				// 	} else {
+				// 		this.$message({
+				// 			showClose: true,
+				// 			message: data.msg,
+				// 			type: 'error'
+				// 		})
+				// 	}
+				// }, (e) => {
+				// 	this.$message({
+				// 		showClose: true,
+				// 		message: e,
+				// 		type: 'error'
+				// 	})
+				// })
+			},
+			delData(id) {
+				API.deletestore({id: id}).then.then((data) => {
+					if (data.succ) {
+						this.getList();
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
 			}
 		}
 	}

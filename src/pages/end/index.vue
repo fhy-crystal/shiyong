@@ -31,7 +31,7 @@
 	.left {
 		display: inline-block;
 		margin-right: 20px;
-		width: 200px;
+		width: 250px;
 		min-height: 500px;
 		height: 100%;
 	}

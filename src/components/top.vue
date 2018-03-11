@@ -7,14 +7,39 @@
 				<router-link to="/backManage/userinfo" v-show="!user">商家中心</router-link>
 				<router-link to="/backManage/userinfo" v-show="user">用户中心</router-link>
 			</div>
+			<div class="fr">
+				<a class="font_red" @click="logout">退出</a>
+			</div>
 		</div>
 	</nav>
 </template>
 <script>
+	import API from '../utils/api'
 	export default {
 		data() {
 			return {
 				user: true
+			}
+		},
+		methods: {
+			logout() {
+				API.logout(this.info.mobile).then((data) => {
+					if (data.succ) {
+						console.log(1)
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
 			}
 		}
 	}

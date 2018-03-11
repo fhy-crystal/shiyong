@@ -42,7 +42,7 @@ export default {
         return new Promise((resolve, reject) => {
             header = Object.assign(axios.defaults.headers.common, header);
             console.log(url);
-            axios.delete(url, JSON.stringify(postBody), header).then((res) => {
+            axios.delete(url, params, header).then((res) => {
                 resolve(res.data);
             }, (error) => {
                 reject(error);
@@ -53,7 +53,7 @@ export default {
         return new Promise((resolve, reject) => {
             header = Object.assign(axios.defaults.headers.common, header);
             console.log(url);
-            axios.put(url, JSON.stringify(postBody), header).then((res) => {
+            axios.put(url, params, header).then((res) => {
                 resolve(res.data);
             }, (error) => {
                 reject(error);

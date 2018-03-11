@@ -6,17 +6,17 @@ export default {
     reset: (params) => (ajaxMehod.post('account/v1/password/reset', params)),			//忘记密码
     password: (params) => (ajaxMehod.put('account/v1/password', params)),				//修改密码
     logout: (params) => (ajaxMehod.post('account/v1/logout', params)),					//退出登录
-    smscaptcha: (params) => (ajaxMehod.get('account/v1/smscaptcha', params)),			//发送验证码
+    smscaptcha: (params) => (ajaxMehod.get('account/v1/sms-captcha', params)),			//发送验证码
 
 	creategoods: (params) => (ajaxMehod.post('seller/goods/v1', params)),						//
 	editgoods: (params) => (ajaxMehod.put('seller/goods/v1/{id}', params)),
 	deletegoods: (params) => (ajaxMehod.delete('seller/goods/v1/{id}', params)),
-	deletestore: (params) => (ajaxMehod.delete('seller/store/v1/{id}', params)),
+	deletestore: (params) => (ajaxMehod.delete('seller/store/v1', params)),
 	goodslist: (params) => (ajaxMehod.get('seller/goods/v1', params)),
-	storelist: (params) => (ajaxMehod.get('seller/store/v1', params)),
+	storelist: () => (ajaxMehod.get('seller/store/v1')),
 	edittask: (params) => (ajaxMehod.put('task/v1/{id}', params)),
 	createtask: (params) => (ajaxMehod.post('task/v1', params)),
-	deltask: (params) => (ajaxMehod.delete('task/v1/{id}', params)),
+	deltask: (params) => (ajaxMehod.delete('task/v1', params)),
 	mytasklist: (params) => (ajaxMehod.get('task/my/v1', params)),
 	checkiftask: (params) => (ajaxMehod.get('task/check/v1', params)),
 	tasklist: (params) => (ajaxMehod.get('task/v1', params)),

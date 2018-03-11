@@ -15,7 +15,7 @@
 						<p>2、海量正品好货，统统免费抽奖，中奖即送！</p>
 						<p>3、领奖即成代言人，分享好货送现金！</p>
 					</div>
-					<router-link to="/register" class="register_btn"><img src="../assets/register/user.png"><span>用户注册</span></router-link>
+					<router-link :to="{name: 'register', params: {role: 1}}" class="register_btn"><img src="../assets/register/user.png"><span>用户注册</span></router-link>
 				</li>
 				<!--中间竖线-->
 				<li class="mid_line fl"></li>
@@ -33,7 +33,7 @@
 						<p>3、专属计划，海量收藏加购！</p>
 						<p>4、多纬度/多天数/提升UV价值！</p>
 					</div>
-					<router-link to="/register" class="register_btn seller_btn"><img src="../assets/register/seller.png"><span>商家注册</span></router-link>
+					<router-link :to="{name: 'register', params: {role: 2}}" class="register_btn seller_btn"><img src="../assets/register/seller.png"><span>商家注册</span></router-link>
 				</li>
 			</ul>
 		</div>

@@ -2,22 +2,22 @@
 	<article class="content">
 		<div class="reg_detail layout_1200 clearfix">
 			<el-form :model="info" :rules="rules" ref="registerForm" label-position="right" label-width="80px">
-				<el-form-item label="手机号" prop="phone">
-					<el-input v-model="info.phone" placeholder="请输入手机号"></el-input>
+				<el-form-item label="手机号" prop="mobile">
+					<el-input v-model="info.mobile" placeholder="请输入手机号"></el-input>
 				</el-form-item>
-				<el-form-item label="密码" prop="pwd">
-					<el-input type="password" v-model="info.pwd" placeholder="6位以上字符，包含英文、数字"></el-input>
+				<el-form-item label="密码" prop="password">
+					<el-input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字"></el-input>
 				</el-form-item>
-				<el-form-item label="确认密码" prop="pwdConfirm">
-					<el-input type="password" v-model="info.pwdConfirm" placeholder="6位以上字符，包含英文、数字"></el-input>
+				<el-form-item label="确认密码" prop="confirm_password">
+					<el-input type="password" v-model="info.confirm_password" placeholder="6位以上字符，包含英文、数字"></el-input>
 				</el-form-item>
 				<el-form-item label="邀请码">
-					<el-input v-model="info.inviteCode" placeholder="请填写邀请码"></el-input>
+					<el-input v-model="info.invite_code" placeholder="请填写邀请码"></el-input>
 				</el-form-item>
 				<el-form-item label="验证码" prop="captcha">
 					<el-input class="sm_input" v-model="info.captcha" placeholder="请输入短信验证码"></el-input>
 					<span>
-						<a class="get_sms disabled">短信获取</a>
+						<a class="get_sms disabled" @click="getCapcha">短信获取</a>
 					</span>
 				</el-form-item>
 				<!-- <li class="agreement">
@@ -33,6 +33,7 @@
 	</article>
 </template>
 <script>
+	import API from '../utils/api'
 	export default {
 		data() {
 			var phoneCheck = (rule, value, callback) => {
@@ -76,48 +77,82 @@
 
 			return {
 				info: {
-					phone: '',
-					pwd: '',
-					pwdConfirm: '',
-					captcha: ''
+					mobile: '',
+					password: '',
+					confirm_password: '',
+					captcha: '',
+					invite_code: ''
 				},
 				rules: {
-					phone: [{
+					mobile: [{
 						required: true, validator: phoneCheck, trigger: 'blur'
 					}],
-					pwd: [{
+					password: [{
 						required: true, validator: pwdCheck, trigger: 'blur'
 					}],
-					pwdConfirm: [{
+					confirm_password: [{
 						required: true, validator: pwdConfirmCheck, trigger: 'blur'
 					}],
 					captcha: [{
 						required: true, validator: captchaCheck, trigger: 'blur'
 					}]
-				}
+				},
+				role: ''
 			}
 		},
+		created() {
+			// 获取用户角色
+			this.role = this.$route.params.role;
+		},
 		methods: {
+			getCapcha() {
+				if (!this.info.mobile) {
+					this.$message({
+						showClose: true,
+						message: '请填写手机号',
+						type: 'error'
+					})
+				} else {
+					API.smscaptcha(this.info.mobile).then((data) => {
+						if (data.succ) {
+							console.log(1)
+						} else {
+							this.$message({
+								showClose: true,
+								message: data.msg,
+								type: 'error'
+							})
+						}
+					}, (e) => {
+						this.$message({
+							showClose: true,
+							message: e,
+							type: 'error'
+						})
+					})
+				}
+				
+			},
 			submit(formName) {
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
-                        API.register(this.info).then((data) => {
-                            if (data.succ) {
-                                console.log(1);
-                            } else {
-                                this.$message({
-                                    showClose: true,
-                                    message: data.msg,
-                                    type: 'error'
-                                })
-                            }
-                        }, (e) => {
-                            this.$message({
-                                showClose: true,
-                                message: e,
-                                type: 'error'
-                            })
-                        })
+						API.register(this.info).then((data) => {
+							if (data.succ) {
+								console.log(1);
+							} else {
+								this.$message({
+									showClose: true,
+									message: data.msg,
+									type: 'error'
+								})
+							}
+						}, (e) => {
+							this.$message({
+								showClose: true,
+								message: e,
+								type: 'error'
+							})
+						})
 						
 					}
 				})

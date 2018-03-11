@@ -1,10 +1,10 @@
 <template>
 	<div class="shopBind_right myfl">
-		<form ref="myform">
+		<form>
 			<div class="shopBind_right_choice clearfix">
 				<span class="myfl">选择绑定类型:</span>
 				<input type="radio" name="shopType" value="1" checked="checked" style="margin-left: 10px;" class="shopBind_shoptype_tb" id="taobao"/><label for="taobao" style="margin: 0 10px;vertical-align: middle;">淘宝</label>
-				<input type="radio" name="shopType" value="2" class="shopBind_shoptype_tm" style="margin-left: 50px;" id="tianmao"/><label for="tianmao" style="margin: 0 10px;vertical-align: middle;">天猫</label>
+				<input type="radio" name="shopType" value="2" class="shopBind_shoptype_tm" style="margin-left: 50px;" id="tianmao"/><label for="tianmao" style="margin: 0 10px;vertical-align: middle;">京东</label>
 			</div>
 			<div style="clear: both;margin-top: 20px;"></div>
 			<div class="shopBind_right_name">
@@ -41,37 +41,12 @@
     import API from '../../../utils/api'
     export default {
         data() {
-            var storenameCheck = (rule, value, callback) => {
-                if (value === '') {
-                    callback(new Error('店铺名称不能为空'));
-                } else {
-                    callback();
-                }
-            };
-            var urlCheck = (rule, value, callback) => {
-                if (value === '') {
-                    callback(new Error('店铺地址不能为空'));
-                }
-            };
-            var wangwangCheck = (rule, value, callback) => {
-                if (value === '') {
-                    callback(new Error('旺旺名称不能为空'));
-                }
-            }
             return {
                 errorMsg: '出错信息',
                 info: {
                     mobile: '',
                     password: ''
                 },
-                rules: {
-                    mobile: [{
-                        validator: userCheck, trigger: 'blur'
-                    }],
-                    password: [{
-                        validator: pwdCheck, trigger: 'blur'
-                    }]
-                }
             }
         },
         methods: {
