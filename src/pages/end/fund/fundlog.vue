@@ -1,9 +1,12 @@
 <template>
 	<div>
 		<el-table :data="tableData" stripe style="width: 100%">
-			<el-table-column prop="date" label="日期" width="180"></el-table-column>
-			<el-table-column prop="name" label="姓名" width="180"></el-table-column>
-			<el-table-column prop="address" label="地址"></el-table-column>
+			<el-table-column prop="id" label="id" width="80"></el-table-column>
+			<el-table-column prop="created_at" label="交易时间" width="120"></el-table-column>
+			<el-table-column prop="remarks" width ="280" label="备注"></el-table-column>
+			<el-table-column prop="actual_income" label="收入"></el-table-column>
+			<el-table-column prop="actual_pay" label="支出"></el-table-column>
+			<el-table-column prop="total_amount" label="余额"></el-table-column>
 		</el-table>
 	</div>
 </template>
@@ -12,21 +15,20 @@
 		data() {
 			return {
 				tableData: [{
-					date: '2016-05-02',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1518 弄'
+				    id:1,
+                    created_at: '2016-05-04',
+                    remarks: '上海市普陀区金沙江路 1518 弄',
+                    actual_income:'',
+                    actual_pay: '500',
+                    total_amount: '5000',
+
 				 }, {
-					date: '2016-05-04',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1517 弄'
-				 }, {
-					date: '2016-05-01',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1519 弄'
-				 }, {
-					date: '2016-05-03',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1516 弄'
+                    id:2,
+                    created_at: '2016-05-04',
+                    remarks: '充值500',
+                    actual_income:'500',
+                    actual_pay: '',
+                    total_amount: '5500',
 				 }]
 			}
 		}

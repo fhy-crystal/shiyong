@@ -9,8 +9,8 @@ export default {
     smscaptcha: (params) => (ajaxMehod.get('account/v1/sms-captcha', params)),			//发送验证码
 
 	creategoods: (params) => (ajaxMehod.post('seller/goods/v1', params)),						//
-	editgoods: (params) => (ajaxMehod.put('seller/goods/v1/{id}', params)),
-	deletegoods: (params) => (ajaxMehod.delete('seller/goods/v1/{id}', params)),
+	editgoods: (params) => (ajaxMehod.put('seller/goods/v1', params)),
+	deletegoods: (params) => (ajaxMehod.delete('seller/goods/v1', params)),
 	deletestore: (params) => (ajaxMehod.delete('seller/store/v1', params)),
 	goodslist: (params) => (ajaxMehod.get('seller/goods/v1', params)),
 	storelist: () => (ajaxMehod.get('seller/store/v1')),

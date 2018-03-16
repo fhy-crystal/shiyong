@@ -16,7 +16,7 @@ const userinfo = () => import('@/pages/end/userinfo/index');//后台用户信息
 const creategoods = () => import('@/pages/end/goodsmanage/creategoods');//创建商品
 const goodslist = () => import('@/pages/end/goodsmanage/goodslist');//商品列表
 const editgoods = () => import('@/pages/end/goodsmanage/editgoods');//订单列表包含订单号金额等信息
-const delgoods = () => import('@/pages/end/goodsmanage/delgoods');//订单列表包含订单号金额等信息
+// const delgoods = () => import('@/pages/end/goodsmanage/delgoods');//订单列表包含订单号金额等信息
 
 
 // 活动管理
@@ -58,8 +58,6 @@ const editstore = () =>import('@/pages/end/storemanage/editstore');//添加店�
 //绑定账户
 
 const taonamelist = () =>import('@/pages/end/taoname/taonamelist');//taobao jd 用户名列表
-const addtaoname = () =>import('@/pages/end/taoname/addtaoname');//添加淘宝或者京东用户名
-const edittaoname = () =>import('@/pages/end/taoname/edittaoname');//添加淘宝或者京东用户名
 
 Vue.use(Router)
 
@@ -154,11 +152,11 @@ export default new Router({
                     name: 'editgoods',
                     component: editgoods
                 },
-				{
-                    path: '/backManage/delgoods',
-                    name: 'delgoods',
-                    component: delgoods
-                },
+                // {
+                //     path: '/backManage/delgoods',
+                //     name: 'delgoods',
+                //     component: delgoods
+                // },
 
                 //提现绑定
 				{
@@ -208,17 +206,7 @@ export default new Router({
                     name: 'fundlog',
                     component: fundlog
                 },
-                //绑定账户
-				{
-                    path: '/backManage/addtaoname',
-                    name: 'addtaoname',
-                    component: addtaoname
-                },
-                {
-                    path: '/backManage/edittaoname',
-                    name: 'edittaoname',
-                    component: edittaoname
-                },
+
 				{
                     path: '/backManage/taonamelist',
                     name: 'taonamelist',
@@ -231,7 +219,7 @@ export default new Router({
                     component: addstore
                 },
                 {
-                    path: '/backManage/editstore',
+                    path: '/backManage/editstore/:storeid',
                     name: 'editstore',
                     component: editstore
                 },
