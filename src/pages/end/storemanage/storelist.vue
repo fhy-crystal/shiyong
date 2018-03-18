@@ -17,7 +17,7 @@
 	</div>
 </template>
 <script>
-    import API from '../../../utils/api'
+	import API from '../../../utils/api'
 	export default {
 		data() {
 			return {
@@ -25,28 +25,28 @@
 			}
 		},
 		created() {
-		    // 页面加载的时候调用getlist方法获取列表数据
+			// 页面加载的时候调用getlist方法获取列表数据
 		  this.getList();
 		},
 		methods: {
-		    getList() {
+			getList() {
 				//调用API方法获取列表
 				//假设list就是获取的列表
 				var list = [{
-				    id: 1,
-                    store_type: '淘宝',
-                    store_name: 'GXG官方旗舰店',
-                    store_account: 'GXG官方旗舰店',
-                    verify_status: '审核通过',
-                    created_at: '2018-5-25'
-                }, {
-				    id: 2,
-                    store_type: '京东',
-                    store_name: 'zara官方旗舰店',
-                    store_account: ' - ',
-                    verify_status: '审核通过',
-                    created_at: '2018-5-29'
-                }]
+					id: 1,
+					store_type: '淘宝',
+					store_name: 'GXG官方旗舰店',
+					store_account: 'GXG官方旗舰店',
+					verify_status: '审核通过',
+					created_at: '2018-5-25'
+				}, {
+					id: 2,
+					store_type: '京东',
+					store_name: 'zara官方旗舰店',
+					store_account: ' - ',
+					verify_status: '审核通过',
+					created_at: '2018-5-29'
+				}]
 				this.tableData = list;
 				// API.storelist().then((data) => {
 				// 	if (data.succ) {
@@ -86,7 +86,7 @@
 				})
 			},
 			editData(id) {
-		        this.$router.push({name: 'editstore', params: {storeid: id}})
+				this.$router.push({name: 'editstore', params: {storeid: id}})
 			}
 		}
 	}
