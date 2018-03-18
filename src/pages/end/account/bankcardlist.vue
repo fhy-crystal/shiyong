@@ -2,8 +2,10 @@
 	<div>
 		<el-table :data="tableData" stripe style="width: 100%">
 			<el-table-column prop="bank" label="银行名称" width="180"></el-table-column>
+			<el-table-column prop="bankfiliale" label="所属支行" width="180"></el-table-column>
 			<el-table-column prop="bank_card" label="银行卡号" width="180"></el-table-column>
 			<el-table-column prop="real_name" label="持卡人"></el-table-column>
+			<el-table-column prop="id_card" label="持卡人身份证号码"></el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
 					<el-button type="text" size="small" >修改</el-button>

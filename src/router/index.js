@@ -35,7 +35,6 @@ const startorder = () => import('@/pages/end/order/startorder');//开始任务  
 
 
 //提现/充值账户管理
-const editpassword = () => import('@/pages/end/account/editpassword');//修改登陆密码
 const addbankcard = () => import('@/pages/end/account/addbankcard');//添加银行卡
 const editbankcard = () => import('@/pages/end/account/editbankcard');//编辑银行卡
 const bankcardlist = () => import('@/pages/end/account/bankcardlist');//银行卡列表
@@ -55,9 +54,11 @@ const storelist = () =>import('@/pages/end/storemanage/storelist');//店铺列�
 const addstore = () =>import('@/pages/end/storemanage/addstore');//添加店铺
 const editstore = () =>import('@/pages/end/storemanage/editstore');//添加店铺
 
-//绑定账户
+//个人中心
+const editpassword = () =>import('@/pages/end/usercenter/editpassword');//修改密码
+const personalinfo = () =>import('@/pages/end/usercenter/personalinfo');//修改密码
 
-const taonamelist = () =>import('@/pages/end/taoname/taonamelist');//taobao jd 用户名列表
+
 
 Vue.use(Router)
 
@@ -207,11 +208,6 @@ export default new Router({
 					component: fundlog
 				},
 
-				{
-					path: '/backManage/taonamelist',
-					name: 'taonamelist',
-					component: taonamelist
-				},
 				//绑定店铺
 				{
 					path: '/backManage/addstore',
@@ -228,6 +224,18 @@ export default new Router({
 					name: 'storelist',
 					component: storelist
 				},
+
+				//个人中心
+                {
+                    path: '/backManage/editpassword',
+                    name: 'editpassword',
+                    component: editpassword
+                },
+                {
+                    path: '/backManage/personalinfo',
+                    name: 'personalinfo',
+                    component: personalinfo
+                },
 			]
 		}
 	]

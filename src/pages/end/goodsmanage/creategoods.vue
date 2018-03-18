@@ -5,16 +5,16 @@
 				<el-option v-for="item in storeList" :label="item.store_name" :value="item.store_id" :key="item.store_id"></el-option>
 			</el-select>
 		</el-form-item>
-		<el-form-item label="商品名称" prop="goods_name">
+		<el-form-item class="input_width" label="商品名称" prop="goods_name">
 			<el-input v-model="form.goods_name"></el-input>
 		</el-form-item>
-		<el-form-item label="商品链接" prop="goods_url">
+		<el-form-item class="input_width" label="商品链接" prop="goods_url">
 			<el-input v-model="form.goods_url"></el-input>
 		</el-form-item>
-		<el-form-item label="商品价格" prop="goods_price">
+		<el-form-item class="input_width" label="商品价格" prop="goods_price">
 			<el-input v-model="form.goods_price"></el-input>
 		</el-form-item>
-		<el-form-item label="商品关键字" prop="goods_keywords">
+		<el-form-item class="input_width" label="商品关键字" prop="goods_keywords">
 			<div v-for="(item, index) in goods_keywords" :key="index">
 				<el-input style="width:90%;margin:0 5px 5px 0;" v-model="item.key"></el-input>
 			</div>
@@ -184,5 +184,8 @@
 		font-size: 20px;
 		color: $main_color;
 		cursor: pointer;
+	}
+	.input_width{
+		width:500px;
 	}
 </style>

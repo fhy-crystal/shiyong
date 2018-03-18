@@ -36,11 +36,13 @@
 		<el-submenu index='3'>
 			<template slot="title">
 				<i class="el-icon-location"></i>
-				<span>账户绑定</span>
+				<span>资金账户管理</span>
 			</template>
 			<el-menu-item-group>
-				<el-menu-item index="/backManage/taonamelist">我的账户</el-menu-item>
+				<el-menu-item index="/backManage/addbankcard">资金账户设置</el-menu-item>
+				<el-menu-item index="/backManage/bankcardlist">我的资金账户</el-menu-item>
 			</el-menu-item-group>
+
 		</el-submenu>
 
 		<el-submenu index="4">
@@ -49,14 +51,22 @@
 				<span>资金管理</span>
 			</template>
 			<el-menu-item-group>
-				<el-menu-item index="/backManage/editpassword">修改密码</el-menu-item>
-				<el-menu-item index="/backManage/addbankcard">提现账号设置</el-menu-item>
-				<el-menu-item index="/backManage/bankcardlist">提现账号管理</el-menu-item>
 				<el-menu-item index="/backManage/recharge">账户充值</el-menu-item>
 				<el-menu-item index="/backManage/rechargelist">我的充值</el-menu-item>
 				<el-menu-item index="/backManage/withdraw">账户提现</el-menu-item>
 				<el-menu-item index="/backManage/withdrawlist">我的提现</el-menu-item>
 				<el-menu-item index="/backManage/fundlog">资金明细</el-menu-item>
+			</el-menu-item-group>
+		</el-submenu>
+
+		<el-submenu index="5">
+			<template slot="title">
+				<i class="el-icon-location"></i>
+				<span>个人中心</span>
+			</template>
+			<el-menu-item-group>
+				<el-menu-item index="/backManage/editpassword">修改密码</el-menu-item>
+				<el-menu-item index="/backManage/personalinfo">个人信息设置</el-menu-item>
 			</el-menu-item-group>
 		</el-submenu>
 	</el-menu>

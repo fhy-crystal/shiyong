@@ -1,15 +1,20 @@
 <template>
-
 	<el-form ref="form" :model="form" label-width="80px">
 		<p class="title">绑定提现账号<p/>
-		<el-form-item label="银行名称">
+		<el-form-item class="le_width" label="银行名称">
 			<el-input  v-model="bank" placeholder="请输入内容"></el-input>
 		</el-form-item>
-		<el-form-item label="银行卡号">
+		<el-form-item class="le_width" label="所属支行">
+			<el-input  v-model="bankfiliale" placeholder="请输入内容"></el-input>
+		</el-form-item>
+		<el-form-item class="le_width" label="银行卡号">
 			<el-input  v-model="bank_card" placeholder="请输入内容"></el-input>
 		</el-form-item>
-		<el-form-item label="持卡人">
+		<el-form-item class="le_width" label="持卡人">
 			<el-input  v-model="real_name" placeholder="请输入内容"></el-input>
+		</el-form-item>
+		<el-form-item class="le_width" label="银行卡号">
+			<el-input  v-model="id_card" placeholder="请输入内容"></el-input>
 		</el-form-item>
 
 		<el-form-item>
@@ -48,7 +53,7 @@
 
 <style lang="scss" scoped>
 	@import '../../../../static/css/common.scss';
-	.el-form-item{
+	.le_width{
 		width:400px;
 	}
 	.title{

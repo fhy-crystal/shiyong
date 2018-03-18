@@ -1,31 +1,31 @@
 <template>
 	<div>
 		<el-form ref="form" :model="form" label-width="80px">
-			<el-form-item label="选择店铺">
+			<el-form-item class="f_left" label="选择店铺">
 				<el-select v-model="form.store_id">
 					<el-option label="罗蒙旗舰店" value="1"></el-option>
 					<el-option label="高雄港旗舰店" value="1"></el-option>
 				</el-select>
 			</el-form-item>
-			<el-form-item label="选择商品">
+			<el-form-item class="f_left" label="选择商品">
 				<el-select v-model="form.store_id">
 					<el-option label="罗蒙旗舰店" value="1"></el-option>
 					<el-option label="高雄港旗舰店" value="1"></el-option>
 				</el-select>
 			</el-form-item>
-			<el-form-item label="进店方式">
+			<el-form-item class="f_left" label="进店方式">
 				<el-select v-model="form.store_id">
 					<el-option label="罗蒙旗舰店" value="1"></el-option>
 					<el-option label="高雄港旗舰店" value="1"></el-option>
 				</el-select>
 			</el-form-item>
-			<el-form-item label="活动状态">
+			<el-form-item class="f_left" label="活动状态">
 				<el-select v-model="form.store_id">
 					<el-option label="罗蒙旗舰店" value="1"></el-option>
 					<el-option label="高雄港旗舰店" value="1"></el-option>
 				</el-select>
 			</el-form-item>
-			<el-form-item label="商品名称">
+			<el-form-item class="f_left" label="商品名称">
 				<el-input v-model="form.goods_name"></el-input>
 			</el-form-item>
 			<el-form-item>
@@ -185,7 +185,8 @@
 		font-size: 12px;
 		color: #66b1ff;
 	}
-	.el-form-item{
+	.f_left{
+		width: 280px;
 		float: left;
 	}
 

@@ -7,13 +7,13 @@
 			</el-radio-group>
 		</el-form-item>
 		<el-form-item label="店铺名称">
-			<el-input v-model="info.store_name" placeholder="请输入店铺名称"></el-input>
+			<el-input class="i_width" v-model="info.store_name" placeholder="请输入店铺名称"></el-input>
 		</el-form-item>
 		<el-form-item label="店铺主旺旺ID" v-show="info.store_type==1">
-			<el-input v-model="info.store_account" placeholder="请输入店铺主旺旺"></el-input>
+			<el-input class="i_width" v-model="info.store_account" placeholder="请输入店铺主旺旺"></el-input>
 		</el-form-item>
 		<el-form-item label="店铺链接">
-			<el-input v-model="info.store_url" placeholder="请输入店铺链接"></el-input>
+			<el-input class="i_width" v-model="info.store_url" placeholder="请输入店铺链接"></el-input>
 		</el-form-item>
 
 		<el-form-item>
@@ -82,7 +82,7 @@
 </script>
 <style lang="scss" scope>
 	@import '../../../../static/css/common.scss';
-	.el-form-item__content{
-		width:480px;
+	.i_width{
+		width:300px;
 	}
 </style>
