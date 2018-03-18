@@ -9,13 +9,13 @@
 		<div class="step-block">
 			<div v-show="active==0">
 				<el-form :model="info" :rules="rules" ref="form1" class="form" label-position="right" label-width="110px">
-					<el-form-item label="已绑定手机号">
-						<span>{{info.phone}}</span>
+					<el-form-item label="已绑定手机号" prop="mobile">
+						<el-input v-model="info.mobile" placeholder="请输入手机号"></el-input>
 					</el-form-item>
 					<el-form-item label="核对手机验证码" prop="captcha">
 						<el-input class="sm_input" v-model="info.captcha" placeholder="请输入短信验证码"></el-input>
 						<span>
-							<a class="get_sms disabled">短信获取</a>
+							<a class="get_sms" @click="getCapcha">短信获取</a>
 						</span>
 					</el-form-item>
 				</el-form>
@@ -26,11 +26,11 @@
 			</div>
 			<div v-show="active==1">
 				<el-form :model="info" :rules="rules" ref="form2" class="form" label-position="right" label-width="110px">
-					<el-form-item label="新密码" prop="pwd">
-						<el-input type="password" v-model="info.pwd" placeholder="6位以上字符，包含英文、数字"></el-input>
+					<el-form-item label="新密码" prop="password">
+						<el-input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字"></el-input>
 					</el-form-item>
-					<el-form-item label="确认密码" prop="pwdConfirm">
-						<el-input type="password" v-model="info.pwdConfirm" placeholder="6位以上字符，包含英文、数字"></el-input>
+					<el-form-item label="确认密码" prop="confirm_password">
+						<el-input type="password" v-model="info.confirm_password" placeholder="6位以上字符，包含英文、数字"></el-input>
 					</el-form-item>
 				</el-form>
 
@@ -53,8 +53,18 @@
 	</article>
 </template>
 <script>
+	import API from '../utils/api'
 	export default {
 		data() {
+			var phoneCheck = (rule, value, callback) => {
+				if (value === '') {
+					callback(new Error('手机号不能为空'));
+				} else if (!(/^1(3|4|5|7|8)\d{9}$/.test(value))) {
+					callback(new Error('手机号不正确'));
+				} else {
+					callback();
+				}
+			}
 			var captchaCheck = (rule, value, callback) => {
 				if (value === '') {
 					callback(new Error('验证码不能为空'));
@@ -77,7 +87,7 @@
 				if (value === '') {
 					callback(new Error('密码不能为空'));
 				} else {
-					if (value !== this.info.pwd) {
+					if (value !== this.info.password) {
 						callback(new Error('两次输入密码不一致'));
 					} else {
 						callback();
@@ -87,17 +97,22 @@
 			return {
 				active: 0,
 				info: {
-					phone: '137****4921',
-					captcha: ''
+					mobile: '',
+					captcha: '',
+					password: '',
+					confirm_password: ''
 				},
 				rules: {
+					mobile: [{
+						validator: phoneCheck, trigger: 'blur'
+					}],
 					captcha: [{
 						validator: captchaCheck, tigger: 'blur'
 					}],
-					pwd: [{
+					password: [{
 						validator: pwdCheck, trigger: 'blur'
 					}],
-					pwdConfirm: [{
+					confirm_password: [{
 						validator: pwdConfirmCheck, trigger: 'blur'
 					}],
 				}
@@ -108,20 +123,71 @@
 				if (step == 0) {
 					this.$refs[formName].validate((valid) => {
 						if (valid) {
-
+							this.active ++
 						}
 					})
-					this.active ++
 				} else if (step == 1) {
 					this.$refs[formName].validate((valid) => {
 						if (valid) {
-
+							this.active ++
 						}
 					})
-					this.active ++
 				} else {
-					this.$router.push('/login');
+					API.reset(this.info).then((data) => {
+						if (data.succ) {
+							this.$message({
+								showClose: true,
+								message: '密码修改成功',
+								type: 'success'
+							})
+							this.$router.push('/login');
+						} else {
+							this.$message({
+								showClose: true,
+								message: data.msg,
+								type: 'error'
+							})
+						}
+					}, (e) => {
+						this.$message({
+							showClose: true,
+							message: e,
+							type: 'error'
+						})
+					})
 				}
+			},
+			getCapcha() {
+				if (!this.info.mobile) {
+					this.$message({
+						showClose: true,
+						message: '请填写手机号',
+						type: 'error'
+					})
+				} else {
+					API.smscaptcha(this.info.mobile).then((data) => {
+						if (data.succ) {
+							this.$message({
+								showClose: true,
+								message: '验证码已发送，请查收',
+								type: 'success'
+							})
+						} else {
+							this.$message({
+								showClose: true,
+								message: data.msg,
+								type: 'error'
+							})
+						}
+					}, (e) => {
+						this.$message({
+							showClose: true,
+							message: e,
+							type: 'error'
+						})
+					})
+				}
+				
 			}
 		}
 	}

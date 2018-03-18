@@ -49,6 +49,7 @@
 				<span>资金管理</span>
 			</template>
 			<el-menu-item-group>
+				<el-menu-item index="/backManage/editpassword">修改密码</el-menu-item>
 				<el-menu-item index="/backManage/addbankcard">提现账号设置</el-menu-item>
 				<el-menu-item index="/backManage/bankcardlist">提现账号管理</el-menu-item>
 				<el-menu-item index="/backManage/recharge">账户充值</el-menu-item>

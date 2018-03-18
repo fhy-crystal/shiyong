@@ -23,7 +23,7 @@
 						<el-button class="login_btn" type="primary" @click="onSubmit('loginForm')">立即登录</el-button>
 					</el-form-item>
 					<li class="register">
-						<router-link to="/regConfirm" class="fr">快速注册</router-link>
+						<router-link to="/register" class="fr">快速注册</router-link>
 					</li>
 				</el-form>
 			</div>
@@ -72,7 +72,7 @@
 					if (valid) {
 						API.login(this.info).then((data) => {
 							if (data.succ) {
-								console.log(1);
+								this.$router.push('/prolist');
 							} else {
 								this.$message({
 									showClose: true,

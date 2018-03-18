@@ -17,7 +17,7 @@
 				<el-form-item label="验证码" prop="captcha">
 					<el-input class="sm_input" v-model="info.captcha" placeholder="请输入短信验证码"></el-input>
 					<span>
-						<a class="get_sms disabled" @click="getCapcha">短信获取</a>
+						<a class="get_sms" @click="getCapcha">短信获取</a>
 					</span>
 				</el-form-item>
 				<!-- <li class="agreement">
@@ -60,7 +60,7 @@
 				if (value === '') {
 					callback(new Error('密码不能为空'));
 				} else {
-					if (value !== this.info.pwd) {
+					if (value !== this.info.password) {
 						callback(new Error('两次输入密码不一致'));
 					} else {
 						callback();
@@ -115,7 +115,11 @@
 				} else {
 					API.smscaptcha(this.info.mobile).then((data) => {
 						if (data.succ) {
-							console.log(1)
+							this.$message({
+								showClose: true,
+								message: '验证码已发送，请查收',
+								type: 'success'
+							})
 						} else {
 							this.$message({
 								showClose: true,
@@ -138,7 +142,7 @@
 					if (valid) {
 						API.register(this.info).then((data) => {
 							if (data.succ) {
-								console.log(1);
+								this.$router.push('/login');
 							} else {
 								this.$message({
 									showClose: true,

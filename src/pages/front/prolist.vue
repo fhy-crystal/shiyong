@@ -57,7 +57,7 @@
 				</ul>
 				<div class="login_box">
 					<router-link to="/login" class="btn login">登录</router-link>
-					<router-link to="/regConfirm" class="btn resginer">注册</router-link>
+					<router-link to="/register" class="btn resginer">注册</router-link>
 				</div>
 				<div class="statis_box">
 					<ul class="clearfix">

@@ -81,7 +81,7 @@ export default new Router({
 			name: 'regConfirm',
 			component: regConfirm
 		}, {
-			path: '/register/:role',
+			path: '/register',
 			name: 'register',
 			component: register
 		}, {
