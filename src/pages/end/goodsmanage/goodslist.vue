@@ -1,5 +1,21 @@
 <template>
 	<div>
+		<el-form ref="form" :model="form" label-width="80px">
+			<el-form-item label="选择店铺">
+				<el-select v-model="form.store_id">
+					<el-option label="罗蒙旗舰店" value="1"></el-option>
+					<el-option label="高雄港旗舰店" value="1"></el-option>
+				</el-select>
+			</el-form-item>
+			<el-form-item label="商品名称">
+				<el-input v-model="form.goods_name"></el-input>
+			</el-form-item>
+			<el-form-item>
+				<el-button type="primary" @click="onSubmit">搜索</el-button>
+			</el-form-item>
+		</el-form>
+
+
 		<el-table :data="tableData" stripe style="width: 100%">
 			<el-table-column prop="goods_name" label="商品名称" width="150"></el-table-column>
 			<el-table-column prop="goods_price" label="商品价格" width="100"></el-table-column>
@@ -25,6 +41,16 @@
     export default {
         data() {
             return {
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                },
                 tableData: []
             }
         },
@@ -82,10 +108,19 @@
                         type: 'error'
                     })
                 })
+            },
+            onSubmit() {
+                console.log('submit!');
             }
         }
     }
 </script>
 <style lang="scss" scoped>
 	@import '../../../../static/css/common.scss';
+	.el-select{
+		width: 300px;
+	}
+	.el-form-item{
+		float: left;
+	}
 </style>

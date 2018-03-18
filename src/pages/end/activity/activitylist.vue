@@ -1,5 +1,39 @@
 <template>
 	<div>
+		<el-form ref="form" :model="form" label-width="80px">
+			<el-form-item label="选择店铺">
+				<el-select v-model="form.store_id">
+					<el-option label="罗蒙旗舰店" value="1"></el-option>
+					<el-option label="高雄港旗舰店" value="1"></el-option>
+				</el-select>
+			</el-form-item>
+			<el-form-item label="选择商品">
+				<el-select v-model="form.store_id">
+					<el-option label="罗蒙旗舰店" value="1"></el-option>
+					<el-option label="高雄港旗舰店" value="1"></el-option>
+				</el-select>
+			</el-form-item>
+			<el-form-item label="进店方式">
+				<el-select v-model="form.store_id">
+					<el-option label="罗蒙旗舰店" value="1"></el-option>
+					<el-option label="高雄港旗舰店" value="1"></el-option>
+				</el-select>
+			</el-form-item>
+			<el-form-item label="活动状态">
+				<el-select v-model="form.store_id">
+					<el-option label="罗蒙旗舰店" value="1"></el-option>
+					<el-option label="高雄港旗舰店" value="1"></el-option>
+				</el-select>
+			</el-form-item>
+			<el-form-item label="商品名称">
+				<el-input v-model="form.goods_name"></el-input>
+			</el-form-item>
+			<el-form-item>
+				<el-button type="primary" @click="onSubmit">搜索</el-button>
+			</el-form-item>
+		</el-form>
+
+
 		<el-table :data="tableData" stripe style="width: 100%">
 			<el-table-column prop="id" label="ID" width="50"></el-table-column>
 			<el-table-column prop="task_name" label="活动名称" width="100"></el-table-column>
@@ -53,6 +87,16 @@
     export default {
         data() {
             return {
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                },
                 tableData: []
             }
         },
@@ -103,6 +147,9 @@
                 // 	})
                 // })
             },
+            onSubmit() {
+                console.log('submit!');
+            }
             // delData(id) {
             //     API.deletestore({id: id}).then.then((data) => {
             //         if (data.succ) {
@@ -137,6 +184,9 @@
 	.shenhe{
 		font-size: 12px;
 		color: #66b1ff;
+	}
+	.el-form-item{
+		float: left;
 	}
 
 </style>

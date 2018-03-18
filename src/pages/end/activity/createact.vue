@@ -1,37 +1,50 @@
 <template>
 	<div>
-			<p class="title">创建活动<p/>
-			<form>
-				<div class="item"><span class="span_name">活动名称:</span><input type="text" placeholder="请输入商品名称" name="task_name"  class="shop_name"/></div>
-				<div class="item">
-					<span class="span_name">进店方式:</span>
-					<input type="radio" name="platform"  value="1" checked="checked" style="margin-left: 10px;" class="shopBind_shoptype_tb" id="taobao"/><label for="taobao" style="margin: 0 10px;vertical-align: middle;">普通搜索</label>
-					<input type="radio"  name="platform" value="2"  style="margin-left: 50px;" id="tianmao"/><label for="tianmao" style="margin: 0 10px;vertical-align: middle;">手机搜索</label>
-				</div>
+		<p class="title">创建活动<p/>
+		<el-form ref="form" :model="form" label-width="160px">
+			<el-form-item label="活动名称">
+				<el-input v-model="form.goods_name"></el-input>
+			</el-form-item>
+			<el-form-item label="活动商品">
+				<el-select v-model="form.goods_id" placeholder="请选择">
+				<el-option
+						v-for="item in options"
+						:key="item.value"
+						:label="item.label"
+						:value="item.value">
+				</el-option>
+				</el-select>
+			</el-form-item>
 
-				<div class="item"><span class="span_name">活动商品:</span>
-					<el-select v-model="value" placeholder="请选择">
-						<el-option
-								v-for="item in options"
-								:key="item.value"
-								:label="item.label"
-								:value="item.value">
-						</el-option>
-					</el-select>
-				</div>
-				<div class="item"><span class="span_name">商品价格:</span><input type="text" placeholder="请输入商品价格" name="goods_price"  class="shop_name"/></div>
+			<el-form-item label="搜索关键字">
+				<el-select v-model="form.goods_keywords" placeholder="请选择">
+					<el-option
+							v-for="item in goods_keywords"
+							:key="item.value"
+							:label="item.value"
+							:value="item.value">
+					</el-option>
+				</el-select>
+			</el-form-item>
 
-				<div class="item">
-					<span class="span_name" style="float:left">商品主图:</span>
-					<img src="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/299c55e31d7f50ae4dc85faa90d6f445_121_121.jpg" />
-				</div>
-				<div class="item"><span class="span_name">份数:</span><input type="text" placeholder="请输入份数" name="total_order_number"  class="shop_name"/></div>
-				<div class="item"><span class="span_name">单个冻结金额:</span><input type="text" readonly placeholder="单份冻结金额" name="single_order_price"  class="shop_name"/></div>
-				<div class="item"><span class="span_name">总冻结金额:</span><input type="text" readonly placeholder="单份冻结金额" name="total_order_price"  class="shop_name"/></div>
-				<div style="text-align:center">
-					<el-button type="primary" @click="submit">提  交</el-button>
-				</div>
-			</form>
+			<el-form-item label="进店方式">
+				<el-radio v-model="form.platform" label="1">电脑</el-radio>
+				<el-radio v-model="form.platform" label="2">手机</el-radio>
+			</el-form-item>
+			<el-form-item label="份数">
+				<el-input v-model="form.total_order_number"></el-input>
+			</el-form-item>
+
+			<el-form-item label="单份冻结金额">
+				<el-input v-model="single_order_price"></el-input>
+			</el-form-item>
+			<el-form-item label="总冻结金额">
+				<el-input v-model="single_order_price"></el-input>
+			</el-form-item>
+			<el-form-item>
+				<el-button type="primary" @click="onSubmit">立即创建</el-button>
+			</el-form-item>
+		</el-form>
 
 	</div>
 </template>
@@ -55,7 +68,23 @@
                     value: '5',
                     label: '北京烤鸭'
                 }],
-                value: ''
+                goods_keywords: [{
+                    value: '黄金糕',
+                }, {
+                    value: '双皮奶',
+                }],
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                },
+                single_order_price: '6666',
+                total_order_price: '6666',
             }
         }
     }
@@ -76,32 +105,7 @@
 	.el-select-dropdown__item{
 		margin-left: 20px;
 	}
-	.span_name{
-		display: inline-block;
-		width: 100px;
-		text-align: right;
-		color: #2E2D3C;
-		margin-right: 10px;
-		font-size: 13px;
-	}
-	.shop_name {
-		font-size: 12px;
-		outline: none;
-		width: 218px;
-		height: 40px;
-		line-height: 40px;
-		border: 1px solid #EFEFEF;
-		border-radius: 3px;
-		padding-left: 10px;
-		vertical-align: middle;
-	}
-	.goodspic{
-		float:left;
-	}
-	.upload-demo{
-		float: left;
-	}
-	.item{
-		margin-top: 20px;
+	.el-input{
+		width:300px;
 	}
 </style>
