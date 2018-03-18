@@ -1,15 +1,15 @@
 <template>
 	<el-form ref="form" :model="form" :rules="rules" label-width="100px">
-		<el-form-item label="商品店铺" prop="store_id">
-			<el-select v-model="form.store_id" placeholder="请选商品店铺">
+		<el-form-item label="商品店铺">
+			<el-select v-model="form.store_id" placeholder="请选商品店铺" disabled>
 				<el-option v-for="item in storeList" :label="item.store_name" :value="item.store_id" :key="item.store_id"></el-option>
 			</el-select>
 		</el-form-item>
 		<el-form-item label="商品名称" prop="goods_name">
 			<el-input v-model="form.goods_name"></el-input>
 		</el-form-item>
-		<el-form-item label="商品链接" prop="goods_url">
-			<el-input v-model="form.goods_url"></el-input>
+		<el-form-item label="商品链接">
+			<el-input v-model="form.goods_url" disabled></el-input>
 		</el-form-item>
 		<el-form-item label="商品价格" prop="goods_price">
 			<el-input v-model="form.goods_price"></el-input>
@@ -43,13 +43,6 @@
 	import API from '../../../utils/api'
 	export default {
 		data() {
-			var storeCheck = (rule, value, callback) => {
-				if (value === '') {
-					callback(new Error('请选择店铺'));
-				} else {
-					callback();
-				}
-			};
 			var nameCheck = (rule, value, callback) => {
 				if (value === '') {
 					callback(new Error('商品名称不能为空'));
@@ -64,13 +57,6 @@
 					callback();
 				}
 			}
-			var urlCheck = (rule, value, callback) => {
-				if (value === '') {
-					callback(new Error('商品链接不能为空'));
-				} else {
-					callback();
-				}
-			}
 			var keywordsCheck = (rule, value, callback) => {
 				if (this.goods_keywords[this.goods_keywords.length - 1].key === '') {
 					callback(new Error('请填写关键字'));
@@ -80,29 +66,15 @@
 			}
 			return {
 				storeList: [],
-				goods_keywords: [{
-					key: ''
-				}],
+				goods_keywords: [],
 				filelist: [],
-				form: {
-					store_id: '',
-					goods_name: '',
-					goods_url: '',
-					goods_price: '',
-					goods_keywords: ''
-				},
+				form: {},
 				rules: {
-					store_id: [{
-						validator: storeCheck, trigger: 'blur'
-					}],
 					goods_name: [{
 						validator: nameCheck, trigger: 'blur'
 					}],
 					goods_price: [{
 						validator: priceCheck, trigger: 'blur'
-					}],
-					goods_url: [{
-						validator: urlCheck, trigger: 'blur'
 					}],
 					goods_keywords: [{
 						validator: keywordsCheck, trigger: 'blur'
@@ -111,7 +83,38 @@
 				
 			}
 		},
+		created() {
+			this.getDetail()
+		},
 		methods: {
+			getDetail() {
+				API.goodDetail({id: this.$route.params.goodid}).then((data) => {
+					if (data.succ) {
+						this.form = {
+							store_id: data.data.store_id,
+							goods_name: data.data.goods_name,
+							goods_url: data.data.goods_url,
+							goods_price: data.data.goods_price,
+						}
+						let delKeywords = data.data.goods_keywords.split('|');
+						delKeywords.forEach(item => {
+							this.goods_keywords.push({key: item})
+						})
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			},
 			getStoreList() {
 				API.storelist().then((data) => {
 					if (data.succ) {
@@ -155,9 +158,13 @@
 							delKeywords.push(item.key)
 						})
 						this.form.goods_keywords = delKeywords;
-						API.creategoods(this.form).then((data) => {
+						API.editgoods(this.form).then((data) => {
 							if (data.succ) {
-								this.$router.push('/backManage/goodslist');
+								this.$message({
+									showClose: true,
+									message: '修改成功',
+									type: 'success'
+								})
 							} else {
 								this.$message({
 									showClose: true,

@@ -1,24 +1,24 @@
 <template>
-	<el-form ref="form" :model="form" label-width="80px">
+	<el-form ref="form" :model="info" :rules="rules" label-width="80px">
 		<p class="title">绑定提现账号<p/>
-		<el-form-item class="le_width" label="银行名称">
-			<el-input  v-model="bank" placeholder="请输入内容"></el-input>
+		<el-form-item class="le_width" label="银行名称" prop="bank">
+			<el-input  v-model="info.bank" placeholder="请输入内容"></el-input>
 		</el-form-item>
 		<el-form-item class="le_width" label="所属支行">
-			<el-input  v-model="bankfiliale" placeholder="请输入内容"></el-input>
+			<el-input  v-model="info.bankfiliale" placeholder="请输入内容"></el-input>
 		</el-form-item>
-		<el-form-item class="le_width" label="银行卡号">
-			<el-input  v-model="bank_card" placeholder="请输入内容"></el-input>
+		<el-form-item class="le_width" label="银行卡号" prop="bank_card">
+			<el-input  v-model="info.bank_card" placeholder="请输入内容"></el-input>
 		</el-form-item>
-		<el-form-item class="le_width" label="持卡人">
-			<el-input  v-model="real_name" placeholder="请输入内容"></el-input>
+		<el-form-item class="le_width" label="持卡人" prop="real_name">
+			<el-input  v-model="info.real_name" placeholder="请输入内容"></el-input>
 		</el-form-item>
-		<el-form-item class="le_width" label="银行卡号">
-			<el-input  v-model="id_card" placeholder="请输入内容"></el-input>
+		<el-form-item class="le_width" label="身份证号" prop="id_card">
+			<el-input  v-model="info.id_card" placeholder="请输入内容"></el-input>
 		</el-form-item>
 
 		<el-form-item>
-			<el-button type="primary" @click="onSubmit">提交</el-button>
+			<el-button type="primary" @click="onSubmit('form')">提交</el-button>
 		</el-form-item>
 	</el-form>
 </template>
@@ -26,27 +26,51 @@
 
 
 <script>
-    export default {
-        data() {
-            return {
-                form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
-                }
-            }
-        },
-        methods: {
-            onSubmit() {
-                console.log('submit!');
-            }
-        }
-    }
+	import API from '../../../utils/api'
+	export default {
+		data() {
+			return {
+				info: {
+					bank: '',
+					bankfiliale: '',
+					bank_card: '',
+					real_name: '',
+					id_card: ''
+				},
+				rules: {
+					bank: [{required: true, message: '请输入银行名称', trigger: 'blur'}],
+					bank_card: [{required: true, message: '请输入银行卡号', trigger: 'blur'}],
+					real_name: [{required: true, message: '请输入真实姓名', trigger: 'blur'}],
+					id_card: [{required: true, message: '请输入身份证号', trigger: 'blur'}]
+				}
+			}
+		},
+		methods: {
+			onSubmit(formName) {
+				this.$refs[formName].validate(valid => {
+					if (valid) {
+						API.createFund(this.info).then((data) => {
+							if (data.succ) {
+								this.$router.push('/backManage/bankcardlist')
+							} else {
+								this.$message({
+									showClose: true,
+									message: data.msg,
+									type: 'error'
+								})
+							}
+						}, (e) => {
+							this.$message({
+								showClose: true,
+								message: e,
+								type: 'error'
+							})
+						})
+					}
+				})
+			}
+		}
+	}
 </script>
 
 
@@ -95,13 +119,13 @@
 	<!--</div>-->
 <!--</template>-->
 <!--<script>-->
-    <!--export default {-->
-        <!--data() {-->
-            <!--return {-->
+	<!--export default {-->
+		<!--data() {-->
+			<!--return {-->
 
-            <!--}-->
-        <!--}-->
-    <!--}-->
+			<!--}-->
+		<!--}-->
+	<!--}-->
 <!--</script>-->
 <!--<style lang="scss" scoped>-->
 	<!--@import '../../../../static/css/common.scss';-->

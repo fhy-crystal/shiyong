@@ -1,17 +1,16 @@
 <template>
 	<div>
-		<el-form ref="form" :model="form" label-width="80px">
+		<el-form ref="form" label-width="80px">
 			<el-form-item label="选择店铺">
-				<el-select v-model="form.store_id">
-					<el-option label="罗蒙旗舰店" value="1"></el-option>
-					<el-option label="高雄港旗舰店" value="1"></el-option>
+				<el-select v-model="storeid">
+					<el-option v-for="item in storeList" :label="item.store_name" :value="item.store_id" :key="item.store_id"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="商品名称">
-				<el-input v-model="form.goods_name"></el-input>
+				<el-input v-model="goods_name"></el-input>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary" @click="onSubmit">搜索</el-button>
+				<el-button type="primary" @click="search">搜索</el-button>
 			</el-form-item>
 		</el-form>
 
@@ -44,83 +43,97 @@
 	</div>
 </template>
 <script>
-    import API from '../../../utils/api'
-    export default {
-        data() {
-            return {
-                form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
-                },
-                tableData: []
-            }
-        },
-        created() {
-            // 页面加载的时候调用getlist方法获取列表数据
-            this.getList();
-        },
-        methods: {
-            getList() {
-                //调用API方法获取列表
-                //假设list就是获取的列表
-                var list = [{
-                    id: 2,
-                    goods_name: '小兵张乾子',
-                    goods_price: '150元',
-                    goods_url: 'https://item.jd.com/10424550272.html?jd_pop=bf92d847-53d2-4ca0-a7f1-1f3c11aaea13&abt=0',
-                    goods_image: 'https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/299c55e31d7f50ae4dc85faa90d6f445_121_121.jpg',
-                    goods_status: '审核通过',
-                    updated_at: '2018-5-25'
-                }]
-                this.tableData = list;
-                // API.goodslist().then((data) => {
-                // 	if (data.succ) {
-                // 		this.tableData = data.data
-                // 	} else {
-                // 		this.$message({
-                // 			showClose: true,
-                // 			message: data.msg,
-                // 			type: 'error'
-                // 		})
-                // 	}
-                // }, (e) => {
-                // 	this.$message({
-                // 		showClose: true,
-                // 		message: e,
-                // 		type: 'error'
-                // 	})
-                // })
-            },
-            delData(id) {
-                API.deletegoods({id: id}).then.then((data) => {
-                    if (data.succ) {
-                        this.getList();
-                    } else {
-                        this.$message({
-                            showClose: true,
-                            message: data.msg,
-                            type: 'error'
-                        })
-                    }
-                }, (e) => {
-                    this.$message({
-                        showClose: true,
-                        message: e,
-                        type: 'error'
-                    })
-                })
-            },
-            onSubmit() {
-                console.log('submit!');
-            }
-        }
-    }
+	import API from '../../../utils/api'
+	export default {
+		data() {
+			return {
+				storeid: '',
+				goods_name: '',
+				currentPage: 1,
+				total: 0,
+				storeList: [],
+				tableData: []
+			}
+		},
+		created() {
+			// 页面加载的时候调用getlist方法获取列表数据
+			this.getStoreList();
+			this.getList();
+		},
+		methods: {
+			getStoreList() {
+				API.storelist().then((data) => {
+					if (data.succ) {
+						this.storeList = data.data
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			},
+			handleCurrentChange(val) {
+				this.currentPage = val;
+				this.getList();
+			},
+			getList() {
+				let postBody= {
+					store_id: this.storeid,
+					goods_name: this.goods_name,
+					page: this.currentPage + 1
+				}
+				API.goodslist(postBody).then((data) => {
+					if (data.succ) {
+						this.tableData = data.data;
+						this.currentPage = data.current_page;
+						this.total = data.total;
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			},
+			delData(id) {
+				API.deletegoods({id: id}).then.then((data) => {
+					if (data.succ) {
+						this.getList();
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			},
+			search() {
+				this.getList();
+			}
+		}
+	}
 </script>
 <style lang="scss" scoped>
 	@import '../../../../static/css/common.scss';

@@ -12,10 +12,12 @@ export default {
 	editgoods: (params) => (ajaxMehod.put('seller/goods/v1', params)),
 	deletegoods: (params) => (ajaxMehod.delete('seller/goods/v1', params)),
 	goodslist: (params) => (ajaxMehod.get('seller/goods/v1', params)),
+	goodDetail: (params) => (ajaxMehod.get('seller/goods/v1', params)),
 
 	createstore: (params) => (ajaxMehod.post('seller/store/v1', params)),
 	deletestore: (params) => (ajaxMehod.delete('seller/store/v1', params)),
 	storelist: () => (ajaxMehod.get('seller/store/v1')),
+	storeDetail: (params) => (ajaxMehod.get('seller/store/v1', params)),
 
 	
 	edittask: (params) => (ajaxMehod.put('task/v1/{id}', params)),
@@ -30,6 +32,10 @@ export default {
 	checkiforder: (params) => (ajaxMehod.get('task-order/v1/check-permission', params)),
 	assign: (params) => (ajaxMehod.post('task-order/v1/assign', params)),
 
+	createFund: (params) => (ajaxMehod.post('user-fund/v1', params)),
+	deleteFund: (params) => (ajaxMehod.delete('user-fund/v1', params)),
+	editFund: (params) => (ajaxMehod.put('user-fund/v1', params)),
+	getFundList: () => (ajaxMehod.get('user-fund/v1')),
 
 
 
