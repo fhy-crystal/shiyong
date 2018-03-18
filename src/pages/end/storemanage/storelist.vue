@@ -9,8 +9,9 @@
 			<el-table-column prop="created_at" label="绑定时间"></el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
-					<el-button type="danger" size="small" @click="delData(scope.row.id)">删除</el-button>
-					<el-button type="primary" size="small" @click="editData(scope.row.id)">编辑</el-button>
+					<el-button type="text" @click="delData(scope.row.id)">删除</el-button>
+					<br>
+					<el-button type="text" @click="editData(scope.row.id)">编辑</el-button>
 					<!--<router-link to="/backManage/editstore">编辑</router-link>-->
 				</template>
 			</el-table-column>

@@ -148,7 +148,7 @@ export default new Router({
 					component: goodslist
 				},
 				{
-					path: '/backManage/editgoods',
+					path: '/backManage/editgoods/:goodid',
 					name: 'editgoods',
 					component: editgoods
 				},
