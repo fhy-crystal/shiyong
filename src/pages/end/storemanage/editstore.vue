@@ -8,10 +8,10 @@
 			<el-input  v-model="store_name" placeholder="请输入店铺名称"></el-input>
 		</el-form-item>
 		<el-form-item label="店铺主旺旺ID" v-show="store_type==1">
-			<el-input  v-model="store_name" placeholder="请输入店铺主旺旺"></el-input>
+			<el-input  v-model="store_account" placeholder="请输入店铺主旺旺"></el-input>
 		</el-form-item>
 		<el-form-item label="店铺链接">
-			<el-input  v-model="real_name" placeholder="请输入店铺链接"></el-input>
+			<el-input  v-model="store_url" placeholder="请输入店铺链接"></el-input>
 		</el-form-item>
 
 		<el-form-item>

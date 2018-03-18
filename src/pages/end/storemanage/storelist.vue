@@ -4,7 +4,8 @@
 			<el-table-column prop="store_type" label="店铺类型" width="80"></el-table-column>
 			<el-table-column prop="store_name" label="店铺名称" width="180"></el-table-column>
 			<el-table-column prop="store_account" label="旺旺名称"></el-table-column>
-			<el-table-column prop="verify_status" label="店铺状态"></el-table-column>
+			<el-table-column prop="verify_status" label="审核状态"></el-table-column>
+			<el-table-column prop="store_status" label="店铺状态"></el-table-column>
 			<el-table-column prop="created_at" label="绑定时间"></el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
