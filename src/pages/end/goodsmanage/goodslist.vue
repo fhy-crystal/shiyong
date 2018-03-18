@@ -20,7 +20,7 @@
 			<el-table-column prop="goods_name" label="商品名称" width="150"></el-table-column>
 			<el-table-column prop="goods_price" label="商品价格" width="100"></el-table-column>
 			<el-table-column prop="goods_url" label="商品链接" width="200"></el-table-column>
-			<el-table-column  label="商品主图">
+			<el-table-column	label="商品主图">
 				<template slot-scope="scope">
 					<img style="height: 100px;width: 100px;" :src="scope.row.goods_image">
 				</template>
@@ -34,6 +34,13 @@
 				</template>
 			</el-table-column>
 		</el-table>
+		<el-pagination style="float:right;margin-top:10px"
+			@current-change="handleCurrentChange"
+			:current-page.sync="currentPage"
+			:page-size="15"
+			layout="total, prev, pager, next"
+			:total="total">
+		</el-pagination>
 	</div>
 </template>
 <script>

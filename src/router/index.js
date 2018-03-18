@@ -93,13 +93,13 @@ export default new Router({
 			name: 'backManage',
 			component: backIndex,
 			children: [
-                {
-                    path: '/backManage/userinfo',
-                    name: 'userinfo',
-                    component: userinfo
-                },
+				{
+					path: '/backManage/userinfo',
+					name: 'userinfo',
+					component: userinfo
+				},
 
-                //活动管理
+				//活动管理
 				{
 				path: '/backManage/activity',
 				name: 'activity',
@@ -107,127 +107,127 @@ export default new Router({
 				},
 
 				{
-                    path: '/backManage/createact',
-                    name: 'createact',
-                    component: createact
-                },
+					path: '/backManage/createact',
+					name: 'createact',
+					component: createact
+				},
 				{
-                    path: '/backManage/editact',
-                    name: 'editact',
-                    component: editact
-                },
+					path: '/backManage/editact',
+					name: 'editact',
+					component: editact
+				},
 				{
-                    path: '/backManage/applylist',
-                    name: 'applylist',
-                    component: applylist
-                },
+					path: '/backManage/applylist',
+					name: 'applylist',
+					component: applylist
+				},
 				{
-                    path: '/backManage/orderlist',
-                    name: 'orderlist',
-                    component: orderlist
-                },
+					path: '/backManage/orderlist',
+					name: 'orderlist',
+					component: orderlist
+				},
 				{
-                    path: '/backManage/myorderlist',
-                    name: 'myorderlist',
-                    component: myorderlist
-                },
+					path: '/backManage/myorderlist',
+					name: 'myorderlist',
+					component: myorderlist
+				},
 				{
-                    path: '/backManage/startorder',
-                    name: 'startorder',
-                    component: startorder
-                },
-                //商品管理
+					path: '/backManage/startorder',
+					name: 'startorder',
+					component: startorder
+				},
+				//商品管理
 				{
-                    path: '/backManage/creategoods',
-                    name: 'creategoods',
-                    component: creategoods
-                },
+					path: '/backManage/creategoods',
+					name: 'creategoods',
+					component: creategoods
+				},
 				{
-                    path: '/backManage/goodslist',
-                    name: 'goodslist',
-                    component: goodslist
-                },
+					path: '/backManage/goodslist',
+					name: 'goodslist',
+					component: goodslist
+				},
 				{
-                    path: '/backManage/editgoods',
-                    name: 'editgoods',
-                    component: editgoods
-                },
-                // {
-                //     path: '/backManage/delgoods',
-                //     name: 'delgoods',
-                //     component: delgoods
-                // },
+					path: '/backManage/editgoods/:goodid',
+					name: 'editgoods',
+					component: editgoods
+				},
+				// {
+				//	 path: '/backManage/delgoods',
+				//	 name: 'delgoods',
+				//	 component: delgoods
+				// },
 
-                //提现绑定
+				//提现绑定
 				{
-                    path: '/backManage/editpassword',
-                    name: 'editpassword',
-                    component: editpassword
-                },
+					path: '/backManage/editpassword',
+					name: 'editpassword',
+					component: editpassword
+				},
 				{
-                    path: '/backManage/addbankcard',
-                    name: 'addbankcard',
-                    component: addbankcard
-                },
+					path: '/backManage/addbankcard',
+					name: 'addbankcard',
+					component: addbankcard
+				},
 				{
-                    path: '/backManage/editbankcard',
-                    name: 'editbankcard',
-                    component: editbankcard
-                },
+					path: '/backManage/editbankcard',
+					name: 'editbankcard',
+					component: editbankcard
+				},
 				{
-                    path: '/backManage/bankcardlist',
-                    name: 'bankcardlist',
-                    component: bankcardlist
-                },
+					path: '/backManage/bankcardlist',
+					name: 'bankcardlist',
+					component: bankcardlist
+				},
 
-                //资金管理
+				//资金管理
 				{
-                    path: '/backManage/recharge',
-                    name: 'recharge',
-                    component: recharge
-                },
+					path: '/backManage/recharge',
+					name: 'recharge',
+					component: recharge
+				},
 				{
-                    path: '/backManage/rechargelist',
-                    name: 'rechargelist',
-                    component: rechargelist
-                },
+					path: '/backManage/rechargelist',
+					name: 'rechargelist',
+					component: rechargelist
+				},
 				{
-                    path: '/backManage/withdraw',
-                    name: 'withdraw',
-                    component: withdraw
-                },
+					path: '/backManage/withdraw',
+					name: 'withdraw',
+					component: withdraw
+				},
 				{
-                    path: '/backManage/withdrawlist',
-                    name: 'withdrawlist',
-                    component: withdrawlist
-                },
+					path: '/backManage/withdrawlist',
+					name: 'withdrawlist',
+					component: withdrawlist
+				},
 				{
-                    path: '/backManage/fundlog',
-                    name: 'fundlog',
-                    component: fundlog
-                },
+					path: '/backManage/fundlog',
+					name: 'fundlog',
+					component: fundlog
+				},
 
 				{
-                    path: '/backManage/taonamelist',
-                    name: 'taonamelist',
-                    component: taonamelist
-                },
-                //绑定店铺
+					path: '/backManage/taonamelist',
+					name: 'taonamelist',
+					component: taonamelist
+				},
+				//绑定店铺
 				{
-                    path: '/backManage/addstore',
-                    name: 'addstore',
-                    component: addstore
-                },
-                {
-                    path: '/backManage/editstore/:storeid',
-                    name: 'editstore',
-                    component: editstore
-                },
-                {
-                    path: '/backManage/storelist',
-                    name: 'storelist',
-                    component: storelist
-                },
+					path: '/backManage/addstore',
+					name: 'addstore',
+					component: addstore
+				},
+				{
+					path: '/backManage/editstore/:storeid',
+					name: 'editstore',
+					component: editstore
+				},
+				{
+					path: '/backManage/storelist',
+					name: 'storelist',
+					component: storelist
+				},
 			]
 		}
 	]

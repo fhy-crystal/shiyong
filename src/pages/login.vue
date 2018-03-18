@@ -81,11 +81,11 @@
 								})
 							}
 						}, (e) => {
-                            this.$message({
-                                showClose: true,
-                                message: e,
-                                type: 'error'
-                            })
+							this.$message({
+								showClose: true,
+								message: e,
+								type: 'error'
+							})
 						})
 					}
 				})
