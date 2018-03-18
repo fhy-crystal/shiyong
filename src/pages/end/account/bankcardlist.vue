@@ -86,6 +86,7 @@
 						API.editFund(this.info).then((data) => {
 							if (data.succ) {
 								this.getList();
+								this.dialogVisible = false;
 							} else {
 								this.$message({
 									showClose: true,
