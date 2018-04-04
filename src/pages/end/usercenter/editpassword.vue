@@ -3,15 +3,15 @@
 		<p class="title">修改密码<p/>
 		<div class="item">
 			<span class="span_name">原密码:</span>
-			<input type="text" v-model="info.password" placeholder="原密码" name="task_name" class="shop_name"/>
+			<input type="password" v-model="info.password" placeholder="原密码" name="task_name" class="shop_name"/>
 		</div>
 		<div class="item">
 			<span class="span_name">新密码:</span>
-			<input type="text" v-model="info.new_password" placeholder="新密码" name="goods_price" class="shop_name"/>
+			<input type="password" v-model="info.new_password" placeholder="新密码" name="goods_price" class="shop_name"/>
 		</div>
 		<div class="item">
 			<span class="span_name">确认新密码:</span>
-			<input type="text" v-model="info.new_confirm_password" placeholder="再次输入新密码" name="total_order_number" class="shop_name"/>
+			<input type="password" v-model="info.new_confirm_password" placeholder="再次输入新密码" name="total_order_number" class="shop_name"/>
 		</div>
 		<div style="text-align:center">
 			<el-button type="primary" @click="submit">提  交</el-button>
@@ -32,7 +32,7 @@
 		},
 		methods: {
 			submit() {
-				if (!this.password) {
+				if (!this.info.password) {
 					this.$message({
 						showClose: true,
 						message: '请输入原密码',
@@ -63,12 +63,18 @@
 							message: '密码修改成功',
 							type: 'success'
 						})
+						this.info.password = '';
+						this.info.new_password = '';
+						this.info.new_confirm_password = '';
 					} else {
 						this.$message({
 							showClose: true,
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({

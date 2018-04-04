@@ -28,7 +28,8 @@
 	export default {
 		data () {
 			return {
-				info: {}
+				info: {},
+				id: ''
 			}
 		},
 		created() {
@@ -36,7 +37,7 @@
 		},
 		methods: {
 			getDetail() {
-				API.storeDetail({id: this.$route.params.goodid}).then((data) => {
+				API.storeDetail(this.$route.params.storeid).then((data) => {
 					if (data.succ) {
 						this.info = {
 							store_type: data.data.store_type,
@@ -44,6 +45,7 @@
 							store_account: data.data.store_account,
 							store_name: data.data.store_name
 						}
+						this.id = data.data.id
 					} else {
 						this.$message({
 							showClose: true,
@@ -61,7 +63,7 @@
 			},
 			onSubmit() {
 				if (this.info.store_type == 1) {
-					if (!this.info.store_name || !this.info.store_account || !this.info.store.store_url) {
+					if (!this.info.store_name || !this.info.store_account || !this.info.store_url) {
 						this.$message({
 							showClose: true,
 							message: '请完善信息',
@@ -70,7 +72,7 @@
 						return false;
 					}
 				} else {
-					if (!this.info.store_name || !this.info.store.store_url) {
+					if (!this.info.store_name || !this.info.store_url) {
 						this.$message({
 							showClose: true,
 							message: '请完善信息',
@@ -79,7 +81,7 @@
 						return false;
 					}
 				}
-				API.editstore(this.info).then((data) => {
+				API.editstore(this.id, this.info).then((data) => {
 					if (data.succ) {
 						this.$message({
 							showClose: true,

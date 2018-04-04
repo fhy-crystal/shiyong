@@ -36,7 +36,7 @@
 		<el-pagination style="float:right;margin-top:10px"
 			@current-change="handleCurrentChange"
 			:current-page.sync="currentPage"
-			:page-size="15"
+			:page-size="10"
 			layout="total, prev, pager, next"
 			:total="total">
 		</el-pagination>
@@ -88,13 +88,13 @@
 				let postBody= {
 					store_id: this.storeid,
 					goods_name: this.goods_name,
-					page: this.currentPage + 1
+					page: this.currentPage
 				}
 				API.goodslist(postBody).then((data) => {
 					if (data.succ) {
-						this.tableData = data.data;
-						this.currentPage = data.current_page;
-						this.total = data.total;
+						this.tableData = data.data.data;
+						this.currentPage = parseInt(data.data.current_page);
+						this.total = parseInt(data.data.total);
 					} else {
 						this.$message({
 							showClose: true,

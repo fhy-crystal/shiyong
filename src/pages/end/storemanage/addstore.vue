@@ -40,7 +40,7 @@
 		methods: {
 			onSubmit() {
 				if (this.info.store_type == 1) {
-					if (!this.info.store_name || !this.info.store_account || !this.info.store.store_url) {
+					if (!this.info.store_name || !this.info.store_account || !this.info.store_url) {
 						this.$message({
 							showClose: true,
 							message: '请完善信息',
@@ -49,7 +49,7 @@
 						return false;
 					}
 				} else {
-					if (!this.info.store_name || !this.info.store.store_url) {
+					if (!this.info.store_name || !this.info.store_url) {
 						this.$message({
 							showClose: true,
 							message: '请完善信息',
@@ -58,7 +58,7 @@
 						return false;
 					}
 				}
-				API.creategoods(this.info).then((data) => {
+				API.createstore(this.info).then((data) => {
 					if (data.succ) {
 						this.$router.push('/backManage/storelist')
 					} else {

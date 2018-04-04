@@ -113,7 +113,7 @@
 						type: 'error'
 					})
 				} else {
-					API.smscaptcha(this.info.mobile).then((data) => {
+					API.smscaptcha({mobile: this.info.mobile}).then((data) => {
 						if (data.succ) {
 							this.$message({
 								showClose: true,

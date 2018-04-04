@@ -14,9 +14,9 @@
 			</el-table-column>
 		</el-table>
 
-		<el-dialog title="收货地址" :visible.sync="dialogVisible">
+		<el-dialog title="修改账号" :visible.sync="dialogVisible">
 		<el-form ref="form" :model="info" :rules="rules" label-width="80px">
-			<p class="title">绑定提现账号<p/>
+			<p class="title">修改账号<p/>
 			<el-form-item class="le_width" label="银行名称" prop="bank">
 				<el-input  v-model="info.bank" placeholder="请输入内容"></el-input>
 			</el-form-item>
@@ -56,6 +56,10 @@
 				}
 			}
 		},
+		created() {
+			// 页面加载的时候调用getlist方法获取列表数据
+		  this.getList();
+		},
 		methods: {
 			getList() {
 				API.getFundList().then((data) => {
@@ -83,7 +87,7 @@
 			onSubmit(formName) {
 				this.$refs[formName].validate(valid => {
 					if (valid) {
-						API.editFund(this.info).then((data) => {
+						API.editFund(this.info.id, this.info).then((data) => {
 							if (data.succ) {
 								this.getList();
 								this.dialogVisible = false;
@@ -105,7 +109,7 @@
 				})
 			},
 			delData(id) {
-				API.deleteFund({id: id}).then((data) => {
+				API.deleteFund(id).then((data) => {
 					if (data.succ) {
 						this.getList();
 					} else {

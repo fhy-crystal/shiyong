@@ -5,7 +5,6 @@
 			<el-table-column prop="store_name" label="店铺名称" width="180"></el-table-column>
 			<el-table-column prop="store_account" label="旺旺名称"></el-table-column>
 			<el-table-column prop="verify_status" label="审核状态"></el-table-column>
-			<el-table-column prop="store_status" label="店铺状态"></el-table-column>
 			<el-table-column prop="created_at" label="绑定时间"></el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
@@ -33,43 +32,26 @@
 		methods: {
 			getList() {
 				//调用API方法获取列表
-				//假设list就是获取的列表
-				var list = [{
-					id: 1,
-					store_type: '淘宝',
-					store_name: 'GXG官方旗舰店',
-					store_account: 'GXG官方旗舰店',
-					verify_status: '审核通过',
-					created_at: '2018-5-25'
-				}, {
-					id: 2,
-					store_type: '京东',
-					store_name: 'zara官方旗舰店',
-					store_account: ' - ',
-					verify_status: '审核通过',
-					created_at: '2018-5-29'
-				}]
-				this.tableData = list;
-				// API.storelist().then((data) => {
-				// 	if (data.succ) {
-				// 		this.tableData = data.data
-				// 	} else {
-				// 		this.$message({
-				// 			showClose: true,
-				// 			message: data.msg,
-				// 			type: 'error'
-				// 		})
-				// 	}
-				// }, (e) => {
-				// 	this.$message({
-				// 		showClose: true,
-				// 		message: e,
-				// 		type: 'error'
-				// 	})
-				// })
+				API.storelist().then((data) => {
+					if (data.succ) {
+						this.tableData = data.data
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
 			},
 			delData(id) {
-				API.deletestore({id: id}).then.then((data) => {
+				API.deletestore(id).then((data) => {
 					if (data.succ) {
 						this.getList();
 					} else {

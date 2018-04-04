@@ -1,42 +1,140 @@
 <template>
 	<div>
 		<p class="title">账户提现<p/>
-		<div class="item"><span class="span_name">选择银行卡:</span>
-			<el-select v-model="value" placeholder="请选择">
-				<el-option
-						v-for="item in options"
-						:key="item.value"
-						:label="item.label"
-						:value="item.value">
-				</el-option>
-			</el-select>
-		</div>
-		<div class="item"><span class="span_name">开户行:</span>招商银行</div>
-		<div class="item"><span class="span_name">银行卡号:</span>655244756145866</div>
-		<div class="item"><span class="span_name">持卡人:</span>无忧虑</div>
-		<div class="item"><span class="span_name">提现金额:</span><input type="text" name="real_name"  class="shop_name"/></div>
+		<el-form ref="form" :model="form" label-width="120px">
+			<el-form-item label="选择银行卡">
+				<el-select v-model="form.account_id" placeholder="请选择">
+					<el-option
+						v-for="item in destinations"
+						:key="item.id"
+						:label="item.bank_card + '(' + item.real_name + ')'"
+						:value="item.id">
+					</el-option>
+				</el-select>
+			</el-form-item>
 
-
-		<div style="text-align:center">
-			<el-button type="primary">提  交</el-button>
-		</div>
+			<el-form-item label="提现金额">
+				<el-input class="sm_width" v-model="form.amount"></el-input>
+			</el-form-item>
+			<el-form-item label="验证码">
+				<el-input class="sm_width" v-model="form.captcha"></el-input>
+				<el-button type="text" @click="getCaptcha">发送验证码到{{mobile}}</el-button>
+			</el-form-item>
+			<el-form-item>
+				<el-button type="primary" @click="save">提现</el-button>
+			</el-form-item>
+		</el-form>
 	</div>
 </template>
 <script>
-    export default {
-        data() {
-            return {
-                options: [{
-                    value: '1',
-                    label: '农业银行 62235156463574635656 小沫'
-                }, {
-                    value: '2',
-                    label: '招商银行 62235156463574635656 小沫'
-                }],
-                value: ''
-            }
-        }
-    }
+	import API from '../../../utils/api'
+	export default {
+		data() {
+			return {
+				form: {
+					account_id: '',
+					amount:'',
+					captcha:'',
+				},
+				destinations:[],
+				mobile: ''
+				
+			}
+		},
+		created(){
+			this.getUserInfo();
+			this.getList();
+		},
+		methods: {
+			getUserInfo() {
+				API.getmyinfo().then((data) => {
+					if (data.succ) {
+						this.mobile = data.data.mobile;
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			},
+			getList() {
+				API.getFundList().then((data) => {
+					if (data.succ) {
+						this.destinations = data.data;
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			},
+			getCaptcha() {
+				API.smscaptcha({mobile: this.mobile}).then((data) => {
+					if (data.succ) {
+						this.$message({
+							showClose: true,
+							message: '验证码已发送，请查收',
+							type: 'success'
+						})
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			},
+			save() {
+				API.recharge(this.form).then((data) => {
+				if (data.succ) {
+					this.$message({
+						showClose: true,
+						message: '充值成功',
+						type: 'success'
+					})
+					this.$router.push('/backManage/rechargelist')
+				} else {
+					this.$message({
+						showClose: true,
+						message: data.msg,
+						type: 'error'
+					})
+				}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+
+			}
+		}
+
+	}
 </script>
 <style lang="scss" scoped>
 	@import '../../../../static/css/common.scss';
@@ -84,5 +182,7 @@
 		margin-top: 20px;
 	}
 
-
+	.sm_width {
+		width:200px;
+	}
 </style>

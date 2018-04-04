@@ -6,13 +6,18 @@
 		<el-form-item label="用户头像">
 			<el-upload
 					class="upload-demo"
-					action="https://jsonplaceholder.typicode.com/posts/"
+					action="123"
+					:before-upload="beforeUpload"
+					:on-change="onchange"
 					:limit="1"
 					:file-list="filelist"
+					:data="postImg"
 					list-type="picture">
 				<el-button size="small" type="primary">点击上传</el-button>
+				
 				<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
 			</el-upload>
+			<input type="file" @change="upload($event)">
 		</el-form-item>
 		<el-form-item label="性别">
 			<el-radio-group v-model="form.resource">
@@ -43,6 +48,7 @@
 </template>
 
 <script>
+	import API from '../../../utils/api'
     export default {
         data() {
             return {
@@ -56,10 +62,104 @@
                     type: [],
                     resource: '',
                     desc: ''
+                },
+                filelist: [],
+                postImg: {
+                	token: ''
                 }
             }
         },
         methods: {
+        	beforeUpload(file) {
+        		let postBody = {
+        			extension: file.name.split('.')[1]
+        		};
+        		API.getToken(postBody).then((data) => {
+        			if (data.succ) {
+        				this.postImg.token = data.data.token;
+						var formData = new FormData();
+				        formData.append('file', file);
+				        formData.append('token', data.data.token);
+        				API.upload(formData).then((data) => {
+        					if (data.succ) {
+        						
+        					} else {
+        						this.$message({
+        							showClose: true,
+        							message: data.msg,
+        							type: 'error'
+        						})
+        					}
+        				}, (e) => {
+        					this.$message({
+        						showClose: true,
+        						message: e,
+        						type: 'error'
+        					})
+        				})
+        			} else {
+        				this.$message({
+        					showClose: true,
+        					message: data.msg,
+        					type: 'error'
+        				})
+        			}
+        		}, (e) => {
+        			this.$message({
+        				showClose: true,
+        				message: e,
+        				type: 'error'
+        			})
+        		})
+        	},
+        	onchange(event, file) {
+        		console.log(this.postImg.token)
+        		console.log(event, file);
+        	},
+        	upload(e) {
+        		let file = e.target.files[0];
+        		var formData = new FormData();
+                formData.append('file', file);
+                let postBody = {
+                	extension: file.name.split('.')[1]
+                };
+                API.getToken(postBody).then((data) => {
+                	if (data.succ) {
+                		formData.append('token', data.data.token);
+
+                		API.upload(formData).then((data) => {
+                			if (data.succ) {
+	                			
+                			} else {
+                				this.$message({
+                					showClose: true,
+                					message: data.msg,
+                					type: 'error'
+                				})
+                			}
+                		}, (e) => {
+                			this.$message({
+                				showClose: true,
+                				message: e,
+                				type: 'error'
+                			})
+                		})
+                	} else {
+                		this.$message({
+                			showClose: true,
+                			message: data.msg,
+                			type: 'error'
+                		})
+                	}
+                }, (e) => {
+                	this.$message({
+                		showClose: true,
+                		message: e,
+                		type: 'error'
+                	})
+                })
+                
+        	},
             onSubmit() {
                 console.log('submit!');
             }

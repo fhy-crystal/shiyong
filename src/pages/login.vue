@@ -32,6 +32,7 @@
 </template>
 <script>
 	import API from '../utils/api'
+	import * as Cookies from 'js-cookie'
 	export default {
 		data() {
 			var userCheck = (rule, value, callback) => {
@@ -51,7 +52,7 @@
 				}
 			}
 			return {
-				errorMsg: '出错信息',
+				errorMsg: '',
 				info: {
 					mobile: '',
 					password: ''
@@ -72,8 +73,10 @@
 					if (valid) {
 						API.login(this.info).then((data) => {
 							if (data.succ) {
-								this.$router.push('/prolist');
+								this.$router.push('/index');
+								Cookies.set('token', data.data.token)
 							} else {
+								this.errorMsg = data.msg;
 								this.$message({
 									showClose: true,
 									message: data.msg,

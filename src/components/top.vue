@@ -23,7 +23,7 @@
 		},
 		methods: {
 			logout() {
-				API.logout(this.info.mobile).then((data) => {
+				API.logout().then((data) => {
 					if (data.succ) {
 						this.$router.push('/login');
 					} else {
