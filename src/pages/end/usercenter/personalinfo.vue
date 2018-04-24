@@ -5,24 +5,19 @@
 		</el-form-item>
 		<el-form-item label="用户头像">
 			<el-upload
-					class="upload-demo"
-					action="123"
-					:before-upload="beforeUpload"
-					:on-change="onchange"
-					:limit="1"
-					:file-list="filelist"
-					:data="postImg"
-					list-type="picture">
-				<el-button size="small" type="primary">点击上传</el-button>
-				
-				<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+				class="avatar-uploader"
+				action="123"
+				:show-file-list="false"
+				:before-upload="beforeUpload">
+				<img v-if="form.avatar" :src="form.avatar" class="avatar">
+				<i v-else class="el-icon-plus avatar-uploader-icon"></i>
 			</el-upload>
-			<input type="file" @change="upload($event)">
 		</el-form-item>
 		<el-form-item label="性别">
-			<el-radio-group v-model="form.resource">
+			<el-radio-group v-model="form.gender">
+				<el-radio label="0">女</el-radio>
 				<el-radio label="1">男</el-radio>
-				<el-radio label="2">女</el-radio>
+				<el-radio label="2">未知</el-radio>
 			</el-radio-group>
 		</el-form-item>
 		<el-form-item class="inp_width" label="QQ">
@@ -49,126 +44,141 @@
 
 <script>
 	import API from '../../../utils/api'
-    export default {
-        data() {
-            return {
-                fileList2: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}],
-                form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
-                },
-                filelist: [],
-                postImg: {
-                	token: ''
-                }
-            }
-        },
-        methods: {
-        	beforeUpload(file) {
-        		let postBody = {
-        			extension: file.name.split('.')[1]
-        		};
-        		API.getToken(postBody).then((data) => {
-        			if (data.succ) {
-        				this.postImg.token = data.data.token;
+	export default {
+		data() {
+			return {
+				form: {
+					username: '',
+					gender: '',
+					avatar:'',
+					qq: '',
+					email: '',
+					open_status: '',
+					taobao_account: '',
+					jd_account: '',
+				},
+			}
+		},
+		created() {
+			this.getUserInfo()
+		},
+		methods: {
+			getUserInfo() {
+				API.getmyinfo().then((data) => {
+					if (data.succ) {
+						this.form = data.data;
+						this.form.open_status = this.form.open_status === "1" ? true : false;
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			},
+			beforeUpload(file) {
+				let postBody = {
+					extension: file.name.split('.')[1]
+				};
+				API.getToken(postBody).then((data) => {
+					if (data.succ) {
 						var formData = new FormData();
-				        formData.append('file', file);
-				        formData.append('token', data.data.token);
-        				API.upload(formData).then((data) => {
-        					if (data.succ) {
-        						
-        					} else {
-        						this.$message({
-        							showClose: true,
-        							message: data.msg,
-        							type: 'error'
-        						})
-        					}
-        				}, (e) => {
-        					this.$message({
-        						showClose: true,
-        						message: e,
-        						type: 'error'
-        					})
-        				})
-        			} else {
-        				this.$message({
-        					showClose: true,
-        					message: data.msg,
-        					type: 'error'
-        				})
-        			}
-        		}, (e) => {
-        			this.$message({
-        				showClose: true,
-        				message: e,
-        				type: 'error'
-        			})
-        		})
-        	},
-        	onchange(event, file) {
-        		console.log(this.postImg.token)
-        		console.log(event, file);
-        	},
-        	upload(e) {
-        		let file = e.target.files[0];
-        		var formData = new FormData();
-                formData.append('file', file);
-                let postBody = {
-                	extension: file.name.split('.')[1]
-                };
-                API.getToken(postBody).then((data) => {
-                	if (data.succ) {
-                		formData.append('token', data.data.token);
-
-                		API.upload(formData).then((data) => {
-                			if (data.succ) {
-	                			
-                			} else {
-                				this.$message({
-                					showClose: true,
-                					message: data.msg,
-                					type: 'error'
-                				})
-                			}
-                		}, (e) => {
-                			this.$message({
-                				showClose: true,
-                				message: e,
-                				type: 'error'
-                			})
-                		})
-                	} else {
-                		this.$message({
-                			showClose: true,
-                			message: data.msg,
-                			type: 'error'
-                		})
-                	}
-                }, (e) => {
-                	this.$message({
-                		showClose: true,
-                		message: e,
-                		type: 'error'
-                	})
-                })
-                
-        	},
-            onSubmit() {
-                console.log('submit!');
-            }
-        }
-    }
+						formData.append('file', file);
+						formData.append('token', data.data.token);
+						formData.append('key', data.data.key);
+						// this.imgHost = data.data.host
+						API.upload(formData).then((res) => {
+							this.form.avatar = data.data.host + res.key;
+						}, (e) => {
+							this.$message({
+								showClose: true,
+								message: e,
+								type: 'error'
+							})
+						})
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+				return false;
+			},
+			onSubmit() {
+				this.form.open_status = this.form.open_status === true ? 1 : 0;
+				API.setmyinfo(this.form).then((data) => {
+				if (data.succ) {
+					this.getUserInfo();
+					this.$message({
+						showClose: true,
+						message: '修改成功',
+						type: 'success'
+					})
+				} else {
+					this.$message({
+						showClose: true,
+						message: data.msg,
+						type: 'error'
+					})
+				}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			}
+		}
+	}
 </script>
 <style lang="scss" scoped>
 	@import '../../../../static/css/common.scss';
 	.inp_width{
 		width:380px;
+	}
+	.avatar-uploader .el-upload {
+		border: 1px dashed #d9d9d9;
+		border-radius: 6px;
+		cursor: pointer;
+		position: relative;
+		overflow: hidden;
+	}
+	.avatar-uploader .el-upload:hover {
+		border-color: #409EFF;
+	}
+	.avatar-uploader-icon {
+		font-size: 28px;
+		color: #8c939d;
+		width: 178px;
+		height: 178px;
+		line-height: 178px;
+		text-align: center;
+	}
+	.avatar {
+		width: 178px;
+		height: 178px;
+		display: block;
 	}
 </style>

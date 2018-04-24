@@ -11,10 +11,12 @@
 				<div class="error_message">{{errorMsg}}</div>
 				<el-form :model="info" :rules="rules" ref="loginForm" class="form">
 					<el-form-item prop="mobile">
-						<el-input v-model="info.mobile" placeholder="用户名"></el-input>
+						<!-- <el-input v-model="info.mobile" placeholder="用户名"></el-input> -->
+						<input type="text" class="inputBox" v-model="info.mobile" placeholder="用户名">
 					</el-form-item>
 					<el-form-item prop="password">
-						<el-input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字"></el-input>
+						<input type="password" class="inputBox" v-model="info.password" placeholder="6位以上字符，包含英文、数字">
+						<!-- <el-input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字"></el-input> -->
 					</el-form-item>
 					<li class="forgot_pwd clearfix">
 						<router-link class="fr" to="/findPwd">忘记密码？</router-link>
@@ -73,8 +75,10 @@
 					if (valid) {
 						API.login(this.info).then((data) => {
 							if (data.succ) {
-								this.$router.push('/index');
-								Cookies.set('token', data.data.token)
+								this.$router.push('/prolist');
+								Cookies.set('token', data.data.token);
+								Cookies.set('username', data.data.username);
+								Cookies.set('role', data.data.role);
 							} else {
 								this.errorMsg = data.msg;
 								this.$message({
@@ -159,5 +163,16 @@
 			}
 			
 		}
+	}
+	.inputBox {
+		font-size: 12px;
+		outline: none;
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+		border: 1px solid #EFEFEF;
+		border-radius: 3px;
+		padding-left: 10px;
+		vertical-align: middle;
 	}
 </style>

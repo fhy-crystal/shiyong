@@ -3,7 +3,7 @@
 		<el-form ref="form" label-width="80px">
 			<el-form-item label="选择店铺">
 				<el-select v-model="storeid">
-					<el-option v-for="item in storeList" :label="item.store_name" :value="item.store_id" :key="item.store_id"></el-option>
+					<el-option v-for="item in storeList" :label="item.store_name" :value="item.id" :key="item.id"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="商品名称">
@@ -17,7 +17,11 @@
 
 		<el-table :data="tableData" stripe style="width: 100%">
 			<el-table-column prop="goods_name" label="商品名称" width="150"></el-table-column>
-			<el-table-column prop="goods_price" label="商品价格" width="100"></el-table-column>
+			<el-table-column label="商品价格" width="100">
+				<template slot-scope="scope">
+					<span>{{scope.row.goods_price / 100}}元</span>
+				</template>
+			</el-table-column>
 			<el-table-column prop="goods_url" label="商品链接" width="200"></el-table-column>
 			<el-table-column	label="商品主图">
 				<template slot-scope="scope">
@@ -25,7 +29,11 @@
 				</template>
 			</el-table-column>
 			<el-table-column prop="goods_status" label="商品状态"></el-table-column>
-			<el-table-column prop="updated_at" label="更新时间"></el-table-column>
+			<el-table-column  label="更新时间">
+				<template slot-scope="scope">
+					<span>{{scope.row.created_at | time}}</span>
+				</template>
+			</el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
 					<el-button type="text" size="small" @click="delData(scope.row.id)">删除</el-button>
@@ -71,6 +79,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -101,6 +112,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -110,8 +124,9 @@
 					})
 				})
 			},
+
 			delData(id) {
-				API.deletegoods({id: id}).then.then((data) => {
+				API.deletegoods(id).then((data) => {
 					if (data.succ) {
 						this.getList();
 					} else {
@@ -120,6 +135,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -128,6 +146,9 @@
 						type: 'error'
 					})
 				})
+			},
+			edit(id) {
+				this.$router.push({name: 'editgoods', params: {goodid: id}})
 			},
 			search() {
 				this.getList();

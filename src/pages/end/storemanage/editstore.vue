@@ -43,7 +43,8 @@
 							store_type: data.data.store_type,
 							store_url: data.data.store_url,
 							store_account: data.data.store_account,
-							store_name: data.data.store_name
+							store_name: data.data.store_name,
+							
 						}
 						this.id = data.data.id
 					} else {
@@ -52,6 +53,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -94,6 +98,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({

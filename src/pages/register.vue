@@ -3,19 +3,24 @@
 		<div class="reg_detail layout_1200 clearfix">
 			<el-form :model="info" :rules="rules" ref="registerForm" label-position="right" label-width="80px">
 				<el-form-item label="手机号" prop="mobile">
-					<el-input v-model="info.mobile" placeholder="请输入手机号"></el-input>
+					<!-- <el-input v-model="info.mobile" placeholder="请输入手机号"></el-input> -->
+					<input type="text" v-model="info.mobile" placeholder="请输入手机号" class="inputBox">
 				</el-form-item>
 				<el-form-item label="密码" prop="password">
-					<el-input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字"></el-input>
+					<!-- <el-input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字"></el-input> -->
+					<input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字" class="inputBox">
 				</el-form-item>
 				<el-form-item label="确认密码" prop="confirm_password">
-					<el-input type="password" v-model="info.confirm_password" placeholder="6位以上字符，包含英文、数字"></el-input>
+					<!-- <el-input type="password" v-model="info.confirm_password" placeholder="6位以上字符，包含英文、数字"></el-input> -->
+					<input type="password" v-model="info.confirm_password" placeholder="6位以上字符，包含英文、数字" class="inputBox">
 				</el-form-item>
 				<el-form-item label="邀请码">
-					<el-input v-model="info.invite_code" placeholder="请填写邀请码"></el-input>
+					<!-- <el-input v-model="info.invite_code" placeholder="请填写邀请码"></el-input> -->
+					<input type="text" v-model="info.invite_code" placeholder="请填写邀请码" class="inputBox">
 				</el-form-item>
 				<el-form-item label="验证码" prop="captcha">
-					<el-input class="sm_input" v-model="info.captcha" placeholder="请输入短信验证码"></el-input>
+					<input type="text" v-model="info.captcha" placeholder="请输入短信验证码" class="sm_input inputBox">
+					<!-- <el-input class="sm_input" v-model="info.captcha" placeholder="请输入短信验证码"></el-input> -->
 					<span>
 						<a class="get_sms" @click="getCapcha">短信获取</a>
 					</span>
@@ -173,11 +178,6 @@
 		padding: 50px;
 		background-color: white;
 		border-radius: 5px;
-
-		.sm_input {
-			display: inline-block;
-			width: 150px;
-		}
 		// 短信获取
 		.get_sms {
 			margin-left: 25px;
@@ -213,5 +213,20 @@
 			border: 0;
 			font-size: 16px;
 		}
+	}
+	.inputBox {
+		ont-size: 12px;
+		outline: none;
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+		border: 1px solid #EFEFEF;
+		border-radius: 3px;
+		padding-left: 10px;
+		vertical-align: middle;
+	}
+	.sm_input {
+		display: inline-block;
+		width: 150px;
 	}
 </style>

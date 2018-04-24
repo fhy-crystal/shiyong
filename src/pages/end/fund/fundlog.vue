@@ -2,12 +2,22 @@
 	<div>
 		<el-table :data="tableData" stripe style="width: 100%">
 			<el-table-column prop="id" label="id" width="80"></el-table-column>
-			<el-table-column prop="amount" label="总金额"></el-table-column>
-			<el-table-column prop="actual_amount" label="实际金额"></el-table-column>
-			<el-table-column prop="commission" label="佣金"></el-table-column>
-			<!-- <el-table-column prop="record_status" width ="280" label="备注"></el-table-column> -->
+			<el-table-column label="总金额">
+				<template slot-scope="scope">
+					<span>{{scope.row.amount/100}}元</span>
+				</template>
+			</el-table-column>
+			<el-table-column label="实际金额">
+				<template slot-scope="scope">
+					<span>{{scope.row.actual_amount/100}}元</span>
+				</template>
+			</el-table-column>
+			<el-table-column label="佣金">
+				<template slot-scope="scope">
+					<span>{{scope.row.commission/100}}元</span>
+				</template>
+			</el-table-column>
 			<el-table-column prop="remarks" label="备注"></el-table-column>
-			<el-table-column prop="record_type" label="交易时间" width="120"></el-table-column>
 		</el-table>
 		<el-pagination style="float:right;margin-top:10px"
 			@current-change="handleCurrentChange"
@@ -49,6 +59,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({

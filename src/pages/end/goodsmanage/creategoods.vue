@@ -2,7 +2,7 @@
 	<el-form ref="form" :model="form" :rules="rules" label-width="100px">
 		<el-form-item label="商品店铺" prop="store_id">
 			<el-select v-model="form.store_id" placeholder="请选商品店铺">
-				<el-option v-for="item in storeList" :label="item.store_name" :value="item.store_id" :key="item.store_id"></el-option>
+				<el-option v-for="item in storeList" :label="item.store_name" :value="item.id" :key="item.id"></el-option>
 			</el-select>
 		</el-form-item>
 		<el-form-item class="input_width" label="商品名称" prop="goods_name">
@@ -22,13 +22,12 @@
 		</el-form-item>
 		<el-form-item label="商品主图">
 			<el-upload
-					class="upload-demo"
-					action="https://jsonplaceholder.typicode.com/posts/"
-					:limit="1"
-					:file-list="filelist"
-					list-type="picture">
-				<el-button size="small" type="primary">点击上传</el-button>
-				<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+				class="avatar-uploader"
+				action="123"
+				:show-file-list="false"
+				:before-upload="beforeUpload">
+				<img v-if="form.goods_image" :src="form.goods_image" class="avatar">
+				<i v-else class="el-icon-plus avatar-uploader-icon"></i>
 			</el-upload>
 		</el-form-item>
 
@@ -88,6 +87,7 @@
 					store_id: '',
 					goods_name: '',
 					goods_url: '',
+					goods_image: '',
 					goods_price: '',
 					goods_keywords: ''
 				},
@@ -111,6 +111,9 @@
 				
 			}
 		},
+		created() {
+			this.getStoreList();
+		},
 		methods: {
 			getStoreList() {
 				API.storelist().then((data) => {
@@ -122,6 +125,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -130,6 +136,45 @@
 						type: 'error'
 					})
 				})
+			},
+			beforeUpload(file) {
+				let postBody = {
+					extension: file.name.split('.')[1]
+				};
+				API.getToken(postBody).then((data) => {
+					if (data.succ) {
+						var formData = new FormData();
+						formData.append('file', file);
+						formData.append('token', data.data.token);
+						formData.append('key', data.data.key);
+						// this.imgHost = data.data.host
+						API.upload(formData).then((res) => {
+							this.form.goods_image = data.data.host + res.key;
+						}, (e) => {
+							this.$message({
+								showClose: true,
+								message: e,
+								type: 'error'
+							})
+						})
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+				return false;
 			},
 			addKey() {
 				let count = 0;
@@ -154,7 +199,8 @@
 						this.goods_keywords.forEach(item => {
 							delKeywords.push(item.key)
 						})
-						this.form.goods_keywords = delKeywords;
+						this.form.goods_keywords = delKeywords.join('|');
+						this.form.goods_price = this.form.goods_price*100;
 						API.creategoods(this.form).then((data) => {
 							if (data.succ) {
 								this.$router.push('/backManage/goodslist');
@@ -164,6 +210,9 @@
 									message: data.msg,
 									type: 'error'
 								})
+								if (data.code === "20112") {
+									this.$router.push('/login');
+								}
 							}
 						}, (e) => {
 							this.$message({
@@ -187,5 +236,28 @@
 	}
 	.input_width{
 		width:500px;
+	}
+	.avatar-uploader .el-upload {
+		border: 1px dashed #d9d9d9;
+		border-radius: 6px;
+		cursor: pointer;
+		position: relative;
+		overflow: hidden;
+	}
+	.avatar-uploader .el-upload:hover {
+		border-color: #409EFF;
+	}
+	.avatar-uploader-icon {
+		font-size: 28px;
+		color: #8c939d;
+		width: 178px;
+		height: 178px;
+		line-height: 178px;
+		text-align: center;
+	}
+	.avatar {
+		width: 178px;
+		height: 178px;
+		display: block;
 	}
 </style>

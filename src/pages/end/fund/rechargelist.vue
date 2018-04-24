@@ -16,9 +16,21 @@
 		<el-table :data="tableData" stripe style="width: 100%">
 			<el-table-column prop="id" label="ID" width="80"></el-table-column>
 			<el-table-column prop="destination_account_id" label="收款账号" width="180"></el-table-column>
-			<el-table-column prop="amount" label="充值金额"></el-table-column>
-			<el-table-column prop="created_at" label="提交时间"></el-table-column>
-			<el-table-column prop="verify_time" label="处理时间"></el-table-column>
+			<el-table-column  label="充值金额">
+				<template slot-scope="scope">
+					<span>{{scope.row.amount/100}}元</span>
+				</template>
+			</el-table-column>
+			<el-table-column label="提交时间">
+				<template slot-scope="scope">
+					<span>{{scope.row.created_at | time}}</span>
+				</template>
+			</el-table-column>
+			<el-table-column label="处理时间">
+				<template slot-scope="scope">
+					<span>{{scope.row.verify_time | time}}</span>
+				</template>
+			</el-table-column>
 			<el-table-column prop="recharge_status" label="处理结果"></el-table-column>
 			<el-table-column prop="verify_remark" label="备注"></el-table-column>
 			<el-table-column label="操作">
@@ -59,6 +71,7 @@
 				API.rechargelist(postBody).then((data) => {
 					if (data.succ) {
 						this.tableData = data.data.data;
+						console.log(data.data.data);
 						this.currentPage = parseInt(data.data.current_page);
 						this.total = parseInt(data.data.total);
 					} else {
@@ -67,6 +80,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -94,6 +110,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({

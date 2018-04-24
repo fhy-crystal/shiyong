@@ -66,17 +66,22 @@ export default new Router({
 	routes: [
 		{
 			path: '/index',
-			name: 'prolist',
-			component: prolist
+			name: 'login',
+			component: login
+		},{
+			path: '/login',
+			redirect: {
+				name: 'login'
+			}
 		}, {
 			path: '/',
 			redirect: {
-				name: 'prolist'
+				name: 'login'
 			}
 		}, {
-			path: '/login',
-			name: 'login',
-			component: login
+			path: '/prolist',
+			name: 'prolist',
+			component: prolist
 		}, {
 			path: '/regConfirm',
 			name: 'regConfirm',
@@ -102,7 +107,7 @@ export default new Router({
 
 				//活动管理
 				{
-				path: '/backManage/activity',
+				path: '/backManage/activitylist',
 				name: 'activity',
 				component: activitylist
 				},
@@ -113,7 +118,7 @@ export default new Router({
 					component: createact
 				},
 				{
-					path: '/backManage/editact',
+					path: '/backManage/editact/:activityid',
 					name: 'editact',
 					component: editact
 				},
@@ -123,7 +128,7 @@ export default new Router({
 					component: applylist
 				},
 				{
-					path: '/backManage/orderlist',
+					path: '/backManage/orderlist/:activityid',
 					name: 'orderlist',
 					component: orderlist
 				},
@@ -133,7 +138,7 @@ export default new Router({
 					component: myorderlist
 				},
 				{
-					path: '/backManage/startorder',
+					path: '/backManage/startorder/:orderid/:taskid',
 					name: 'startorder',
 					component: startorder
 				},
@@ -160,11 +165,6 @@ export default new Router({
 				// },
 
 				//提现绑定
-				{
-					path: '/backManage/editpassword',
-					name: 'editpassword',
-					component: editpassword
-				},
 				{
 					path: '/backManage/addbankcard',
 					name: 'addbankcard',

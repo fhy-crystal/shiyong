@@ -15,9 +15,21 @@
         </el-form>
 		<el-table :data="tableData" stripe style="width: 100%">
 			<el-table-column prop="id" label="ID" width="80"></el-table-column>
-			<el-table-column prop="amount" label="提现金额"></el-table-column>
-			<el-table-column prop="withdraw_time" label="申请时间"></el-table-column>
-			<el-table-column prop="verify_time" label="提现时间"></el-table-column>
+			<el-table-column  label="提现金额">
+                <template slot-scope="scope">
+                    <span>{{scope.row.amount/100}}元</span>
+                </template>         
+            </el-table-column>
+			<el-table-column prop="withdraw_time" label="申请时间">
+                <template slot-scope="scope">
+                    <span>{{scope.row.withdraw_time | time}}</span>
+                </template>        
+            </el-table-column>
+			<el-table-column prop="verify_time" label="提现时间">
+                <template slot-scope="scope">
+                    <span>{{scope.row.verify_time | time}}</span>
+                </template>         
+            </el-table-column>
 			<el-table-column prop="withdraw_status" label="提现状态"></el-table-column>
 			<!-- <el-table-column  label="提现信息">
 				<template slot-scope="scope">
@@ -63,6 +75,9 @@
                             message: data.msg,
                             type: 'error'
                         })
+                        if (data.code === "20112") {
+                            this.$router.push('/login');
+                        }
                     }
                 }, (e) => {
                     this.$message({
@@ -90,6 +105,9 @@
                             message: data.msg,
                             type: 'error'
                         })
+                        if (data.code === "20112") {
+                            this.$router.push('/login');
+                        }
                     }
                 }, (e) => {
                     this.$message({

@@ -27,10 +27,12 @@
 			<div v-show="active==1">
 				<el-form :model="info" :rules="rules" ref="form2" class="form" label-position="right" label-width="110px">
 					<el-form-item label="新密码" prop="password">
-						<el-input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字"></el-input>
+						<!-- <el-input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字"></el-input> -->
+						<input type="password" v-model="info.password" placeholder="6位以上字符，包含英文、数字" class="inputBox">
 					</el-form-item>
 					<el-form-item label="确认密码" prop="confirm_password">
-						<el-input type="password" v-model="info.confirm_password" placeholder="6位以上字符，包含英文、数字"></el-input>
+						<!-- <el-input type="password" v-model="info.confirm_password" placeholder="6位以上字符，包含英文、数字"></el-input> -->
+						<input type="password" v-model="info.confirm_password" placeholder="6位以上字符，包含英文、数字" class="inputBox">
 					</el-form-item>
 				</el-form>
 
@@ -255,5 +257,16 @@
 				border: 1px solid #EBEBEC;
 			}
 		}
+	}
+	.inputBox {
+		ont-size: 12px;
+		outline: none;
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+		border: 1px solid #EFEFEF;
+		border-radius: 3px;
+		padding-left: 10px;
+		vertical-align: middle;
 	}
 </style>

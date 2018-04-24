@@ -67,6 +67,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({

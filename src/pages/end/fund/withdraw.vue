@@ -56,6 +56,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -75,6 +78,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -98,6 +104,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -108,7 +117,8 @@
 				})
 			},
 			save() {
-				API.recharge(this.form).then((data) => {
+				this.form.amount = this.form.amount*100;
+				API.withdraw(this.form).then((data) => {
 				if (data.succ) {
 					this.$message({
 						showClose: true,
@@ -122,6 +132,9 @@
 						message: data.msg,
 						type: 'error'
 					})
+					if (data.code === "20112") {
+						this.$router.push('/login');
+					}
 				}
 				}, (e) => {
 					this.$message({

@@ -7,7 +7,7 @@
 				<el-option class = 'cz_width'
 						v-for="item in destinations"
 						:key="item.id"
-						:label="item.bank_card + '(' + item.realname + ')'"
+						:label="item.bank + '     ' +  item.bank_card + ' ( ' + item.real_name + ' ) '"
 						:value="item.id">
 				</el-option>
 			</el-select>
@@ -26,7 +26,7 @@
 
 		<el-form-item label="转账时间" class='date_width'>
 			<el-date-picker
-				v-model="form.time"
+				v-model="form.recharge_time"
 				type="datetime"
 				placeholder="选择日期时间"
 				align="right">
@@ -47,30 +47,25 @@
 	export default {
 		data() {
 			return {
+				time:'',
 				form: {
+					amount:'',
 					destination_account_id: '',
 					destination_account_type: 1,
 					source_account_id: '',
 					source_account_type: 1,
-					date: '',
-					time: ''
+					recharge_time: ''
 				},
-				destinations:[
-				{
-					id:1,
-					bank_card:515464564645,
-					realname:'小巴'
-
-				}
-				],
+				destinations:[],
 				sources: []
 			}
 		},
 		created(){
-			this.getList();
+			this.getSourceList();
+			this.getDestinationsList();
 		},
 		methods: {
-			getList() {
+			getSourceList() {
 				API.getFundList().then((data) => {
 					if (data.succ) {
 						this.sources = data.data;
@@ -80,6 +75,31 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			},
+			getDestinationsList() {
+				API.getSysAccount().then((data) => {
+					if (data.succ) {
+						this.destinations = data.data;
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -90,11 +110,14 @@
 				})
 			},
 			save() {
+				var date = new Date(this.form.recharge_time);
+				this.form.recharge_time = Date.parse(date)/1000;
+				this.form.amount = this.form.amount*100;
 				API.recharge(this.form).then((data) => {
 				if (data.succ) {
 					this.$message({
 						showClose: true,
-						message: '充值成功',
+						message: '提交成功',
 						type: 'success'
 					})
 					this.$router.push('/backManage/rechargelist')
@@ -104,6 +127,9 @@
 						message: data.msg,
 						type: 'error'
 					})
+					if (data.code === "20112") {
+						this.$router.push('/login');
+					}
 				}
 				}, (e) => {
 					this.$message({

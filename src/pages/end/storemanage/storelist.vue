@@ -5,7 +5,11 @@
 			<el-table-column prop="store_name" label="店铺名称" width="180"></el-table-column>
 			<el-table-column prop="store_account" label="旺旺名称"></el-table-column>
 			<el-table-column prop="verify_status" label="审核状态"></el-table-column>
-			<el-table-column prop="created_at" label="绑定时间"></el-table-column>
+			<el-table-column prop="created_at" label="绑定时间">
+				<template slot-scope="scope">
+					<span>{{scope.row.created_at | time}}</span>
+				</template>
+			</el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
 					<el-button type="text" @click="delData(scope.row.id)">删除</el-button>
@@ -41,6 +45,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -60,6 +67,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({

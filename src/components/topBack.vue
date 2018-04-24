@@ -8,7 +8,7 @@
 					</router-link>
 				</li>
 				<li class="back_index fr">
-					<router-link to="/index">返回首页</router-link>
+					<router-link to="/index" v-show="islogin">返回首页</router-link>
 				</li>
 			</ul>
 		</div>
@@ -18,7 +18,7 @@
 	export default {
 		data() {
 			return {
-				
+				islogin: false,// 是否登陆
 			}
 		}
 	}

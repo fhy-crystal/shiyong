@@ -8,6 +8,7 @@
 				<router-link to="/backManage/userinfo" v-show="user">用户中心</router-link>
 			</div>
 			<div class="fr">
+				您好 {{userName}}
 				<a class="font_red" @click="logout">退出</a>
 			</div>
 		</div>
@@ -15,16 +16,32 @@
 </template>
 <script>
 	import API from '../utils/api'
+	import * as Cookies from 'js-cookie'
 	export default {
 		data() {
 			return {
-				user: true
+				user: true,
+				userName: ''
 			}
+		},
+		watch: {
+			$route() {
+				if (this.$route.name == 'login' || this.$route.name == 'regConfirm' || this.$route.name == 'register' || this.$route.name == 'findPwd') {
+					this.islogin = false;
+				} else {
+					this.islogin = true;
+				}
+			}
+		},
+		created() {
+			this.userName = Cookies.get('username') || '';
 		},
 		methods: {
 			logout() {
 				API.logout().then((data) => {
 					if (data.succ) {
+						Cookies.remove('token');
+						Cookies.remove('username');
 						this.$router.push('/login');
 					} else {
 						this.$message({

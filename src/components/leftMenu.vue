@@ -28,12 +28,25 @@
 			</template>
 			<el-menu-item-group>
 				<el-menu-item index="/backManage/createact">创建活动</el-menu-item>
-				<el-menu-item index="/backManage/activity">活动管理</el-menu-item>
+				<el-menu-item index="/backManage/activitylist">活动管理</el-menu-item>
 				<el-menu-item index="/backManage/myorderlist">我的订单</el-menu-item>
 			</el-menu-item-group>
 		</el-submenu>
 
-		<el-submenu index='3'>
+
+		<el-submenu index="3">
+			<template slot="title">
+				<i class="el-icon-location"></i>
+				<span>订单管理</span>
+			</template>
+			<el-menu-item-group>
+				<el-menu-item index="/backManage/myorderlist">我的订单</el-menu-item>
+			</el-menu-item-group>
+		</el-submenu>
+
+
+
+		<el-submenu index='4'>
 			<template slot="title">
 				<i class="el-icon-location"></i>
 				<span>资金账户管理</span>
@@ -45,7 +58,7 @@
 
 		</el-submenu>
 
-		<el-submenu index="4">
+		<el-submenu index="5">
 			<template slot="title">
 				<i class="el-icon-location"></i>
 				<span>资金管理</span>
@@ -59,7 +72,7 @@
 			</el-menu-item-group>
 		</el-submenu>
 
-		<el-submenu index="5">
+		<el-submenu index="6">
 			<template slot="title">
 				<i class="el-icon-location"></i>
 				<span>个人中心</span>
@@ -72,11 +85,15 @@
 	</el-menu>
 </template>
 <script>
+	import * as Cookies from 'js-cookie'
 	export default {
 		data() {
 			return {
-				
+				role: 0,
 			}
+		},
+		created() {
+			this.role = Cookies.get('role');
 		},
 		methods: {
 			handleOpen(key, keyPath) {

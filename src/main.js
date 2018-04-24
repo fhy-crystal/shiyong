@@ -10,6 +10,10 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 
+Vue.filter('time', function (value) {
+    return new Date(parseInt(value)*1000).toLocaleString();
+})
+
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',

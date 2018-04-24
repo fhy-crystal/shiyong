@@ -1,15 +1,15 @@
 <template>
 	<el-form ref="form" :model="form" :rules="rules" label-width="100px">
 		<el-form-item label="商品店铺">
-			<el-select v-model="form.store_id" placeholder="请选商品店铺" disabled>
-				<el-option v-for="item in storeList" :label="item.store_name" :value="item.store_id" :key="item.store_id"></el-option>
+			<el-select v-model="form.store_id" placeholder="请选商品店铺" >
+				<el-option v-for="item in storeList" :label="item.store_name" :value="item.id" :key="item.id"></el-option>
 			</el-select>
 		</el-form-item>
 		<el-form-item label="商品名称" prop="goods_name">
 			<el-input v-model="form.goods_name"></el-input>
 		</el-form-item>
-		<el-form-item label="商品链接">
-			<el-input v-model="form.goods_url" disabled></el-input>
+		<el-form-item label="商品链接" prop="goods_url">
+			<el-input v-model="form.goods_url" ></el-input>
 		</el-form-item>
 		<el-form-item label="商品价格" prop="goods_price">
 			<el-input v-model="form.goods_price"></el-input>
@@ -22,18 +22,17 @@
 		</el-form-item>
 		<el-form-item label="商品主图">
 			<el-upload
-					class="upload-demo"
-					action="https://jsonplaceholder.typicode.com/posts/"
-					:limit="1"
-					:file-list="filelist"
-					list-type="picture">
-				<el-button size="small" type="primary">点击上传</el-button>
-				<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+				class="avatar-uploader"
+				action="123"
+				:show-file-list="false"
+				:before-upload="beforeUpload">
+				<img v-if="form.goods_image" :src="form.goods_image" class="avatar">
+				<i v-else class="el-icon-plus avatar-uploader-icon"></i>
 			</el-upload>
 		</el-form-item>
 
 		<el-form-item>
-			<el-button type="primary" @click="onSubmit('form')">立即创建</el-button>
+			<el-button type="primary" @click="onSubmit('form')">保存</el-button>
 			<el-button>取消</el-button>
 		</el-form-item>
 	</el-form>
@@ -84,28 +83,28 @@
 			}
 		},
 		created() {
-			this.getDetail()
+			this.getDetail();
+			this.getStoreList();
 		},
 		methods: {
 			getDetail() {
-				API.goodDetail({id: this.$route.params.goodid}).then((data) => {
+				API.goodDetail(this.$route.params.goodid).then((data) => {
 					if (data.succ) {
-						this.form = {
-							store_id: data.data.store_id,
-							goods_name: data.data.goods_name,
-							goods_url: data.data.goods_url,
-							goods_price: data.data.goods_price,
-						}
+						this.form = data.data;
 						let delKeywords = data.data.goods_keywords.split('|');
 						delKeywords.forEach(item => {
 							this.goods_keywords.push({key: item})
-						})
+						});
+
 					} else {
 						this.$message({
 							showClose: true,
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -125,6 +124,9 @@
 							message: data.msg,
 							type: 'error'
 						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
 					}
 				}, (e) => {
 					this.$message({
@@ -133,6 +135,45 @@
 						type: 'error'
 					})
 				})
+			},
+			beforeUpload(file) {
+				let postBody = {
+					extension: file.name.split('.')[1]
+				};
+				API.getToken(postBody).then((data) => {
+					if (data.succ) {
+						var formData = new FormData();
+						formData.append('file', file);
+						formData.append('token', data.data.token);
+						formData.append('key', data.data.key);
+						// this.imgHost = data.data.host
+						API.upload(formData).then((res) => {
+							this.form.goods_image = data.data.host + res.key;
+						}, (e) => {
+							this.$message({
+								showClose: true,
+								message: e,
+								type: 'error'
+							})
+						})
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+						if (data.data.code === '20122') {
+							this.$router.push('/login');
+						}
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+				return false;
 			},
 			addKey() {
 				let count = 0;
@@ -158,6 +199,7 @@
 							delKeywords.push(item.key)
 						})
 						this.form.goods_keywords = delKeywords;
+						this.form.goods_price = this.form.goods_price*100;
 						API.editgoods(this.form).then((data) => {
 							if (data.succ) {
 								this.$message({
@@ -191,5 +233,28 @@
 		font-size: 20px;
 		color: $main_color;
 		cursor: pointer;
+	}
+	.avatar-uploader .el-upload {
+		border: 1px dashed #d9d9d9;
+		border-radius: 6px;
+		cursor: pointer;
+		position: relative;
+		overflow: hidden;
+	}
+	.avatar-uploader .el-upload:hover {
+		border-color: #409EFF;
+	}
+	.avatar-uploader-icon {
+		font-size: 28px;
+		color: #8c939d;
+		width: 178px;
+		height: 178px;
+		line-height: 178px;
+		text-align: center;
+	}
+	.avatar {
+		width: 178px;
+		height: 178px;
+		display: block;
 	}
 </style>

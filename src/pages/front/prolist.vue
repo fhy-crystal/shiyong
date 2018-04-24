@@ -84,160 +84,26 @@
 
 		<!-- 商品展示 -->
 		<article class="content_box layout_1200">
-			<article class="content_block" id="0">服装鞋包</article>
+			<article class="content_block" id="0">新品试用</article>
 			<article>
 				<section class="goods_block layout_1200">
 					<div class="goods_wrap clearfix">
-						<div class="detail_wrap">
-							<a class="pic" href="./proDetail.html" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">					
-								<img class="pro_img" src="../../assets/index/pro.jpg" title="pro">
+						<div class="detail_wrap" v-for="activity in activityList">
+							<a class="pic">					
+								<img class="pro_img" :src='activity.goods_image' title="pro">
 							</a>
 							<div class="pro_info clearfix">						
 								<h3 class="title">	
-									<a class="title_link" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克</a>
-									<a href="#" title="清爽洁净皮脂污垢">清爽洁净皮脂污垢</a>	
+									<a class="title_link">{{activity.task_name}}</a>
+									<a>{{activity.goods_name}}</a>	
 								</h3>
 								<p class="price">
-									<strong><span class="symbol"><b></b>¥</span>45</strong>
+									<strong><span class="symbol"><b></b>¥</span>{{activity.goods_price}}</strong>
 								</p>
-								<a class="cart_btn" href="#" title="立即购买">立即购买</a>				
+								<a class="cart_btn" @click="justbuy(activity.id)" title="立即购买">立即购买</a>				
 							</div>
 						</div>
-						<div class="detail_wrap">
-							<a class="pic" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">					
-								<img class="pro_img" src="../../assets/index/pro.jpg" title="pro">
-							</a>
-							<div class="pro_info clearfix">						
-								<h3 class="title">	
-									<a class="title_link" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克</a>
-									<a href="#" title="清爽洁净皮脂污垢">清爽洁净皮脂污垢</a>	
-								</h3>
-								<p class="price">
-									<strong><span class="symbol"><b></b>¥</span>45</strong>
-								</p>
-								<a class="cart_btn" href="#" title="立即购买">立即购买</a>				
-							</div>
-						</div>
-						<div class="detail_wrap">
-							<a class="pic" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">					
-								<img class="pro_img" src="../../assets/index/pro.jpg" title="pro">
-							</a>
-							<div class="pro_info clearfix">						
-								<h3 class="title">	
-									<a class="title_link" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克</a>
-									<a href="#" title="清爽洁净皮脂污垢">清爽洁净皮脂污垢</a>	
-								</h3>
-								<p class="price">
-									<strong><span class="symbol"><b></b>¥</span>45</strong>
-								</p>
-								<a class="cart_btn" href="#" title="立即购买">立即购买</a>				
-							</div>
-						</div>
-						<div class="detail_wrap">
-							<a class="pic" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">					
-								<img class="pro_img" src="../../assets/index/pro.jpg" title="pro">
-							</a>
-							<div class="pro_info clearfix">						
-								<h3 class="title">	
-									<a class="title_link" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克</a>
-									<a href="#" title="清爽洁净皮脂污垢">清爽洁净皮脂污垢</a>	
-								</h3>
-								<p class="price">
-									<strong><span class="symbol"><b></b>¥</span>45</strong>
-								</p>
-								<a class="cart_btn" href="#" title="立即购买">立即购买</a>				
-							</div>
-						</div>
-						<div class="detail_wrap">
-							<a class="pic" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">					
-								<img class="pro_img" src="../../assets/index/pro.jpg" title="pro">
-							</a>
-							<div class="pro_info clearfix">						
-								<h3 class="title">	
-									<a class="title_link" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克</a>
-									<a href="#" title="清爽洁净皮脂污垢">清爽洁净皮脂污垢</a>	
-								</h3>
-								<p class="price">
-									<strong><span class="symbol"><b></b>¥</span>45</strong>
-								</p>
-								<a class="cart_btn" href="#" title="立即购买">立即购买</a>				
-							</div>
-						</div>
-						<div class="detail_wrap">
-							<a class="pic" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">					
-								<img class="pro_img" src="../../assets/index/pro.jpg" title="pro">
-							</a>
-							<div class="pro_info clearfix">						
-								<h3 class="title">	
-									<a class="title_link" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克</a>
-									<a href="#" title="清爽洁净皮脂污垢">清爽洁净皮脂污垢</a>	
-								</h3>
-								<p class="price">
-									<strong><span class="symbol"><b></b>¥</span>45</strong>
-								</p>
-								<a class="cart_btn" href="#" title="立即购买">立即购买</a>				
-							</div>
-						</div>
-						<div class="detail_wrap">
-							<a class="pic" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">					
-								<img class="pro_img" src="../../assets/index/pro.jpg" title="pro">
-							</a>
-							<div class="pro_info clearfix">						
-								<h3 class="title">	
-									<a class="title_link" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克</a>
-									<a href="#" title="清爽洁净皮脂污垢">清爽洁净皮脂污垢</a>	
-								</h3>
-								<p class="price">
-									<strong><span class="symbol"><b></b>¥</span>45</strong>
-								</p>
-								<a class="cart_btn" href="#" title="立即购买">立即购买</a>				
-							</div>
-						</div>
-						<div class="detail_wrap">
-							<a class="pic" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">					
-								<img class="pro_img" src="../../assets/index/pro.jpg" title="pro">
-							</a>
-							<div class="pro_info clearfix">						
-								<h3 class="title">	
-									<a class="title_link" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克</a>
-									<a href="#" title="清爽洁净皮脂污垢">清爽洁净皮脂污垢</a>	
-								</h3>
-								<p class="price">
-									<strong><span class="symbol"><b></b>¥</span>45</strong>
-								</p>
-								<a class="cart_btn" href="#" title="立即购买">立即购买</a>				
-							</div>
-						</div>
-						<div class="detail_wrap">
-							<a class="pic" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">					
-								<img class="pro_img" src="../../assets/index/pro.jpg" title="pro">
-							</a>
-							<div class="pro_info clearfix">						
-								<h3 class="title">	
-									<a class="title_link" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克</a>
-									<a href="#" title="清爽洁净皮脂污垢">清爽洁净皮脂污垢</a>	
-								</h3>
-								<p class="price">
-									<strong><span class="symbol"><b></b>¥</span>45</strong>
-								</p>
-								<a class="cart_btn" href="#" title="立即购买">立即购买</a>				
-							</div>
-						</div>
-						<div class="detail_wrap">
-							<a class="pic" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">					
-								<img class="pro_img" src="../../assets/index/pro.jpg" title="pro">
-							</a>
-							<div class="pro_info clearfix">						
-								<h3 class="title">	
-									<a class="title_link" href="#" title="【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克">【2件装】SHISEIDO 资生堂 UNO 男士洗面奶 黑炭控油型 130克</a>
-									<a href="#" title="清爽洁净皮脂污垢">清爽洁净皮脂污垢</a>	
-								</h3>
-								<p class="price">
-									<strong><span class="symbol"><b></b>¥</span>45</strong>
-								</p>
-								<a class="cart_btn" href="#" title="立即购买">立即购买</a>				
-							</div>
-						</div>
+						
 					</div>
 				</section>
 			</article>
@@ -245,7 +111,104 @@
 	</div>
 </template>
 <script>
-	
+	import API from '../../utils/api'
+    export default {
+        data() {
+            return {
+                currentPage:1,
+				total: 0,
+                activityList:[],
+            }
+        },
+        created() {
+            // 页面加载的时候调用getlist方法获取列表数据
+            this.getTaskList();
+        },
+        methods: {
+			getTaskList() {
+
+				API.tasklist().then((data) => {
+					if (data.succ) {
+						console.log(data.data.data);
+						this.activityList = data.data.data;
+						this.currentPage = parseInt(data.data.current_page);
+						this.total = parseInt(data.data.total);
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+			},
+
+			justbuy(id){
+				let bodydata ={
+					task_id:id
+				};
+				API.checkiforder(bodydata).then((data) => {
+					if (data.succ) {
+						API.applyactivity(bodydata).then((data) => {
+							if (data.succ){
+								this.$message({
+									showClose: true,
+									message: '申请成功',
+									type: 'success'
+								})
+							} else {
+								this.$message({
+									showClose: true,
+									message: data.msg,
+									type: 'error'
+								})
+								if (data.code === "20112") {
+										this.$router.push('/login');
+								}
+							}
+						}, (e) => {
+							this.$message({
+								showClose: true,
+								message: e,
+								type: 'error'
+							})
+						})
+					} else {
+						this.$message({
+							showClose: true,
+							message: data.msg,
+							type: 'error'
+						})
+						if (data.code === "20112") {
+							this.$router.push('/login');
+						}
+					}
+				}, (e) => {
+					this.$message({
+						showClose: true,
+						message: e,
+						type: 'error'
+					})
+				})
+
+
+
+
+			}
+
+
+            
+        }
+    }
 </script>
 <style lang='scss' scoped>
 	@import '../../../static/css/common.scss';
@@ -421,6 +384,7 @@
 			display: inline-block;
 			width: 230px;
 			margin: 0 0 5px 5px;
+			padding-top: 5px;
 			background: #fff;
 			text-align: center;
 			.pic {
